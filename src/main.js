@@ -33,13 +33,6 @@ const routes = [{
     component: Login
   },
   {
-    path: '/',
-    component: App,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
     path: '/form',
     component: Form,
     meta: {
