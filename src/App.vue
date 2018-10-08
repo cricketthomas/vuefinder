@@ -11,6 +11,8 @@
     <div v-else>
       <router-link to="./form">Form</router-link>
       <br>
+      <router-link to="./posts">Posts</router-link>
+      <br>
       <button @click="signOut()">Sign Out: {{authUser.email}}</button>
     </div>
     <router-view></router-view>

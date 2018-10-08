@@ -18,7 +18,9 @@
   </div>
 </template>
 <script>
-  import firebase from 'firebase'
+  import firebase, {
+    functions
+  } from 'firebase'
 
   export default {
     name: 'login',
@@ -31,12 +33,19 @@
     },
     methods: {
       signIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        console.log('logged in')
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function (error) {
+          console.log('logged in')
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
       },
       signOut() {
-        firebase.auth().signOut()
-        console.log('logged out' + this.authUser.email)
+        firebase.auth().signOut().then(function () {
+          console.log('logged out' + this.authUser.email)
+        }).catch(function (error) {
+          // An error happened.
+        });
       }
 
     },

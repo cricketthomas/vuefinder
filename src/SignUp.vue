@@ -34,12 +34,19 @@
     },
     methods: {
       register() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-        console.log('User Created')
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function (error) {
+          console.log('User Created')
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
       },
       signOut() {
-        firebase.auth().signOut()
-        console.log('logged out' + this.authUser.email)
+        firebase.auth().signOut().then(function () {
+          console.log('logged out' + this.authUser.email)
+        }).catch(function (error) {
+          // An error happened.
+        });
       }
     },
     created() {

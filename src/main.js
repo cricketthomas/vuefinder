@@ -4,16 +4,10 @@ import VueRouter from 'vue-router';
 import Login from './Login.vue'
 import SignUp from './SignUp.vue'
 import Form from './Form.vue'
+import Posts from './Posts.vue'
 import firebase from 'firebase'
 import VueFire from 'vuefire';
 import './firebase'
-
-
-
-
-
-
-
 
 
 
@@ -24,17 +18,25 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/signup',
-    //name: 'signup',
+    name: 'signup',
     component: SignUp
   },
   {
     path: '/login',
-    //name: 'login',
+    name: 'login',
     component: Login
   },
   {
     path: '/form',
     component: Form,
+    meta: {
+      requiresAuth: true
+    }
+
+  },
+  {
+    path: '/posts',
+    component: Posts,
     meta: {
       requiresAuth: true
     }
