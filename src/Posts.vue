@@ -7,10 +7,17 @@
     <div v-else>
       <h1>V else test</h1>
       <div>
-        <ul v-for="post in posts" v-bind:key="post['.key']">
+        <div v-for="post in usersData" v-bind:key="post['.key']">
+          <div v-if="authUser.uid == post.userId">
+            <p>Edit: {{post.itemInformation.itemName}}</p>
 
-          <li>{{post.itemName}}</li>
-        </ul>
+          </div>
+          <div v-else>
+
+          <p>You cant edit this: {{post.itemInformation.itemName}}</p>
+
+          </div>
+        </div>
 
       </div>
 
@@ -25,7 +32,7 @@
     functions
   } from 'firebase'
   import {
-    postsRef
+    usersRef
   } from './firebase';
 
   export default {
@@ -36,15 +43,16 @@
       }
     },
     firebase: {
-      posts: postsRef
+      usersData: usersRef
     },
 
     methods: {
       signOut() {
         firebase.auth().signOut().then(function () {
-          console.log('logged out' + this.authUser.email)
+          console.log('logged out ' + this.authUser.email + this.authUser.uid)
         }).catch(function (error) {
           // An error happened.
+          alert(error)
         });
       }
 

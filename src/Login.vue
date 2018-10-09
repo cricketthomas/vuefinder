@@ -13,7 +13,7 @@
       <br>
       <button @click="signIn()">Log in</button>
     </div>
-    <div v-else> <button @click="signOut()">Log Out</button>
+    <div v-else> <button @click="signOut()" disabled>Log Out</button>
     </div>
   </div>
 </template>

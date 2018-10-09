@@ -19,7 +19,7 @@
   import firebase from 'firebase'
   import './firebase';
   import {
-    postsRef
+    usersRef
   } from './firebase';
 
   import App from './App.vue'
@@ -30,18 +30,35 @@
       return {
         authUser: null,
         newPosts: {
-          itemName: ''
+          //userId: firebase.auth().currentUser.uid,
+          //email: firebase.auth().currentUser.email,
+          //itemInformation: {
+            itemName: ''
+          //}
         }
       }
     },
     firebase: {
-      posts: postsRef
+      usersData: usersRef
     },
     methods: {
       addPost() {
-        postsRef.push(this.newPosts)
+        usersRef.push({
+          userId: firebase.auth().currentUser.uid,
+          email: firebase.auth().currentUser.email,
+          itemInformation: this.newPosts,
+
+        })
+        //var newCarRef = usersRef.child('Posts').push();
+        
+        //newCarRef.set({
+          //title: 'Mercedes',
+          //img: 'http://'
+        //})
+
+        //usersRef.child("userId").push(this.authUser.uid);
         this.newPosts.itemName = ''
-        console.log("Submitted")
+        console.log("Submitted ")
       },
       signIn() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -50,14 +67,12 @@
       signOut() {
         firebase.auth().signOut()
         console.log('logged out' + this.authUser.email)
-      }
-
+      },
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
         this.authUser = user
       })
-
     }
   }
 

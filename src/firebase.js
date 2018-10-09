@@ -13,5 +13,5 @@ import {
   
   
   export const db = app.database();
-  export const postsRef = db.ref('postsRef');
+  export const usersRef = db.ref('usersRef');
   
