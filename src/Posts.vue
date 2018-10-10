@@ -9,12 +9,12 @@
       <div>
         <div v-for="post in usersData" v-bind:key="post['.key']">
           <div v-if="authUser.uid == post.userId">
-            <p>Edit: {{post.itemInformation.itemName}}</p>
+            <p>Edit: {{post.itemInformation}}</p>
 
           </div>
           <div v-else>
 
-          <p>You cant edit this: {{post.itemInformation.itemName}}</p>
+          <p>You cant edit this: {{post.itemInformation}}</p>
 
           </div>
         </div>

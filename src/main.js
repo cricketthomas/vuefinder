@@ -8,10 +8,21 @@ import Posts from './Posts.vue'
 import firebase from 'firebase'
 import VueFire from 'vuefire';
 import './firebase'
+import * as VueGoogleMaps from "vue2-google-maps";
 
 
 
-
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCJGNkLNfIzR204B2uB2R2YN4wwPRJcpVA',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+  },
+   //// then disable the following:
+  // installComponents: true,
+})
 
 Vue.use(VueFire)
 Vue.use(VueRouter)
@@ -30,7 +41,8 @@ const routes = [{
     path: '/form',
     component: Form,
     meta: {
-      requiresAuth: true
+      requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
+      // Currently there is just pseduo authentication
     }
 
   },

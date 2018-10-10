@@ -4,12 +4,37 @@
     </div>
     <div v-else>
       <fieldset>
-        <label for="item">Item Lost Name</label>
-        <input type="text" placeholder="Item Name" v-model="newPosts.itemName">
-        <p>{{newPosts.itemName}}</p>
-        <button @click="addPost()">Submit Post</button>
-      </fieldset>
+        <h3>Enter your items details below:</h3>
+        <label for="itemName">Item Name</label>
+        <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="newPosts.itemName">
+        <br>
+        <label for="itemDescription">Item Description</label>
+        <textarea id="itemDescription" placeholder="Please descirbe the item you lost." v-model="newPosts.itemDescription">
+        </textarea>
+        <br>
+        <label for="itemDate">Date Lost</label>
+        <input type="date" id="itemDate" v-model="newPosts.itemDate">
+        <br>
+        <label for="tele"> Telephone: </label>
+        <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
 
+        <label for="routeCoor">Coordinates: </label>
+        <input type="text" v-model="newPosts.lostItemLocation" />
+        <p id="routeCoor">Test{{this.coordinates}}</p>
+
+
+
+        <div id="map">
+          <gmap-map :center="mapLocation" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
+            <gmap-marker :position="mapLocation" :draggable="true" @drag="ItemCoordinates" />
+          </gmap-map>
+
+
+        </div>
+
+        <button @click="addPost()">Submit Post</button>
+
+      </fieldset>
     </div>
     <router-view></router-view>
   </div>
@@ -23,20 +48,48 @@
   } from './firebase';
 
   import App from './App.vue'
+  import * as VueGoogleMaps from "vue2-google-maps";
+
 
   export default {
     name: 'app',
     data() {
       return {
+        center: {
+          lat: 10.0,
+          lng: 10.0
+        },
+        mapLocation: {
+          lat: 38.98,
+          lng: -76.94
+        },
+        markers: [{
+          position: {
+            lat: 10.0,
+            lng: 10.0
+          }
+        }, {
+          position: {
+            lat: 11.0,
+            lng: 11.0
+          }
+        }],
+        coordinates: null,
         authUser: null,
         newPosts: {
           //userId: firebase.auth().currentUser.uid,
           //email: firebase.auth().currentUser.email,
           //itemInformation: {
-            itemName: ''
+          itemName: '',
+          itemDescription: '',
+          itemDate: '',
+          contactPhone: '',
+          contactEmail: '',
+          lostItemLocation: null,
           //}
         }
       }
+
     },
     firebase: {
       usersData: usersRef
@@ -49,16 +102,14 @@
           itemInformation: this.newPosts,
 
         })
-        //var newCarRef = usersRef.child('Posts').push();
-        
-        //newCarRef.set({
-          //title: 'Mercedes',
-          //img: 'http://'
-        //})
-
+        //var exampleRef = usersRef.child('Posts').push();
         //usersRef.child("userId").push(this.authUser.uid);
-        this.newPosts.itemName = ''
-        console.log("Submitted ")
+        console.log("Submitted"),
+          console.log("Location " + JSON.stringify(this.lostItemLocation)),
+          this.newPosts.itemName = ''
+        this.newPosts.itemDescription = '',
+          this.newPosts.itemDate = '',
+          this.newPosts.lostItemLocation = ''
       },
       signIn() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -68,6 +119,18 @@
         firebase.auth().signOut()
         console.log('logged out' + this.authUser.email)
       },
+
+      ItemCoordinates(location) {
+        this.coordinates = {
+          lat: location.latLng.lat(),
+          lng: location.latLng.lng(),
+        };
+        console.log(JSON.stringify(this.coordinates.lat))
+        console.log(JSON.stringify(this.coordinates.lng))
+        this.newPosts.lostItemLocation = JSON.stringify(this.coordinates)
+        var test = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
+        //let test = JSON.stringify(this.coordinates)
+      }
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
@@ -105,6 +168,11 @@
 
   a {
     color: #42b983;
+  }
+
+  #map {
+    display: flex;
+    justify-content: center;
   }
 
 </style>
