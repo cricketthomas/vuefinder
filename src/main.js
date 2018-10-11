@@ -5,6 +5,7 @@ import Login from './Login.vue'
 import SignUp from './SignUp.vue'
 import Form from './Form.vue'
 import Posts from './Posts.vue'
+import Information from './Information.vue'
 import firebase from 'firebase'
 import VueFire from 'vuefire';
 import './firebase'
@@ -20,7 +21,7 @@ Vue.use(VueGoogleMaps, {
     // OR: libraries: 'places,drawing,visualization'
     // (as you require)
   },
-   //// then disable the following:
+  //// then disable the following:
   // installComponents: true,
 })
 
@@ -39,6 +40,7 @@ const routes = [{
   },
   {
     path: '/form',
+    name: 'form',
     component: Form,
     meta: {
       requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
@@ -48,13 +50,22 @@ const routes = [{
   },
   {
     path: '/posts',
+    name: 'posts',
     component: Posts,
     meta: {
       requiresAuth: true
     }
 
+  },
+  {
+    path: '/:allInfo/',
+    name: 'information',
+    component: Information,
+    meta: {
+      //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
+      // Currently there is just pseduo authentication
+    }
   }
-
 
 ]
 const router = new VueRouter({

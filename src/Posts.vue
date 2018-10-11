@@ -9,12 +9,26 @@
       <div>
         <div v-for="post in usersData" v-bind:key="post['.key']">
           <div v-if="authUser.uid == post.userId">
-            <p>Edit: {{post.itemInformation}}</p>
 
+
+            <div>
+              <strong>Item Information:</strong>
+              <h5>Lost Item: {{post.itemInformation.itemName}}</h5>
+              <br>
+              <strong>Contact Information:</strong> <br>
+              Email: {{post.itemInformation.contactEmail}} <br>
+              Phone:{{post.itemInformation.contactPhone}}
+            </div>
+            <router-link :to="{ name: 'information', params: { allInfo: post.itemInformation }}">Details</router-link>
+
+
+            <button>Edit</button>
           </div>
           <div v-else>
 
-          <p>You cant edit this: {{post.itemInformation}}</p>
+            <p>You cant edit this: {{post.itemInformation}}</p>
+            <router-link :to="{ name: 'information', params: { allInfo: post.itemInformation }}">Details</router-link>
+
 
           </div>
         </div>
@@ -24,6 +38,7 @@
 
 
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>

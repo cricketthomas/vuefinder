@@ -12,8 +12,11 @@
       </label>
       <br>
       <button @click="signIn()">Log in</button>
+      <br>
+      <button @click="resetPassword()">Forgot Password?</button>
     </div>
-    <div v-else> <button @click="signOut()" disabled>Log Out</button>
+    <div v-else>
+      <button @click="signOut()" disabled>Log Out</button>
     </div>
   </div>
 </template>
@@ -45,6 +48,15 @@
           console.log('logged out' + this.authUser.email)
         }).catch(function (error) {
           // An error happened.
+        });
+      },
+      resetPassword() {
+        var auth = firebase.auth();
+        var emailAddress = prompt("Enter your email");
+        auth.sendPasswordResetEmail(emailAddress).then(function () {
+          // Email sent.
+        }).catch(function (error) {
+          alert(error);
         });
       }
 

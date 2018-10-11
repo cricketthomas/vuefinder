@@ -15,9 +15,12 @@
         <label for="itemDate">Date Lost</label>
         <input type="date" id="itemDate" v-model="newPosts.itemDate">
         <br>
+        <label for="contactEmail"> Contact Email: </label>
+        <input type="email" id="contactEmail" v-model="newPosts.contactEmail">
+        <br>
         <label for="tele"> Telephone: </label>
         <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
-
+        <br>
         <label for="routeCoor">Coordinates: </label>
         <input type="text" v-model="newPosts.lostItemLocation" />
         <p id="routeCoor">Test{{this.coordinates}}</p>
