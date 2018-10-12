@@ -8,8 +8,7 @@
       <h1>V else test</h1>
       <div>
         <div v-for="post in usersData" v-bind:key="post['.key']">
-          <div v-if="authUser.uid == post.userId">
-
+          <div>
 
             <div>
               <strong>Item Information:</strong>
@@ -22,15 +21,10 @@
             <router-link :to="{ name: 'information', params: { allInfo: post.itemInformation }}">Details</router-link>
 
 
-            <button>Edit</button>
+            <button v-show="authUser.uid == post.userId" @click="deletePost(post)">Delete</button>
+            <hr>
           </div>
-          <div v-else>
-
-            <p>You cant edit this: {{post.itemInformation}}</p>
-            <router-link :to="{ name: 'information', params: { allInfo: post.itemInformation }}">Details</router-link>
-
-
-          </div>
+          
         </div>
 
       </div>
@@ -69,7 +63,12 @@
           // An error happened.
           alert(error)
         });
+      },
+      deletePost(post) {
+        usersRef.child(post['.key']).remove()
+        console.log("Remove post Sucess")
       }
+      
 
     },
     created() {
