@@ -1,6 +1,8 @@
 # vue-finder
 
 > A Vue.js project
+
+Laundry list: 
 1. Loading page.
 2. User post page for all personal posts
 3. Graph for lost items found and not found
