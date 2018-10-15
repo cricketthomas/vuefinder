@@ -22,8 +22,8 @@
         <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
         <br>
         <label for="routeCoor">Coordinates: </label>
-        <input type="text" v-model="newPosts.lostItemLocation" />
-        <p id="routeCoor">Test{{this.coordinates}}</p>
+        <input type="text" v-model="newPosts.lostItemLocation" disabled/>
+        <p id="routeCoor">Current Coordinates{{this.coordinates}}</p>
 
 
 
@@ -80,15 +80,16 @@
         coordinates: null,
         authUser: null,
         newPosts: {
+
           //userId: firebase.auth().currentUser.uid,
           //email: firebase.auth().currentUser.email,
-          //itemInformation: {
+          //item_info: {
           itemName: '',
           itemDescription: '',
           itemDate: '',
           contactPhone: '',
           contactEmail: '',
-          lostItemLocation: null,
+          lostItemLocation: this.routeCoor,
           //}
         }
       }
@@ -100,9 +101,11 @@
     methods: {
       addPost() {
         usersRef.push({
-          userId: firebase.auth().currentUser.uid,
-          email: firebase.auth().currentUser.email,
-          itemInformation: this.newPosts,
+          private_info: {
+            userId: firebase.auth().currentUser.uid,
+            email: firebase.auth().currentUser.email
+          },
+          item_info: this.newPosts,
 
         })
         //var exampleRef = usersRef.child('Posts').push();
@@ -131,7 +134,7 @@
         console.log(JSON.stringify(this.coordinates.lat))
         console.log(JSON.stringify(this.coordinates.lng))
         this.newPosts.lostItemLocation = JSON.stringify(this.coordinates)
-        var test = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
+        var routeCoor = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
         //let test = JSON.stringify(this.coordinates)
       }
     },

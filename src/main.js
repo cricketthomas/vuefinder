@@ -6,6 +6,8 @@ import SignUp from './SignUp.vue'
 import Form from './Form.vue'
 import Posts from './Posts.vue'
 import Information from './Information.vue'
+import SpecificInfo from './SpecificInfo.vue'
+
 import firebase from 'firebase'
 import VueFire from 'vuefire';
 import './firebase'
@@ -32,6 +34,10 @@ const routes = [{
     path: '/signup',
     name: 'signup',
     component: SignUp
+  },
+  {
+    path: '/specificinfo/:test',
+    component: SpecificInfo
   },
   {
     path: '/login',
