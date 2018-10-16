@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import VueRouter from 'vue-router';
-import Login from './Login.vue'
-import SignUp from './SignUp.vue'
-import Form from './Form.vue'
-import Posts from './Posts.vue'
-import Information from './Information.vue'
-import SpecificInfo from './SpecificInfo.vue'
+import Login from './Login.vue';
+import SignUp from './SignUp.vue';
+import Form from './Form.vue';
+import Posts from './Posts.vue';
+import Information from './Information.vue';
+import SpecificInfo from './SpecificInfo.vue';
 
-import firebase from 'firebase'
+import firebase from 'firebase';
 import VueFire from 'vuefire';
-import './firebase'
+import './firebase';
 import * as VueGoogleMaps from "vue2-google-maps";
 
 
@@ -27,8 +27,8 @@ Vue.use(VueGoogleMaps, {
   // installComponents: true,
 })
 
-Vue.use(VueFire)
-Vue.use(VueRouter)
+Vue.use(VueFire);
+Vue.use(VueRouter);
 
 const routes = [{
     path: '/signup',
@@ -36,8 +36,11 @@ const routes = [{
     component: SignUp
   },
   {
-    path: '/specificinfo/:test',
-    component: SpecificInfo
+    name: "specificinfo",
+
+    path: '/specificinfo/:key',
+    component: SpecificInfo,
+    props: true
   },
   {
     path: '/login',
@@ -64,8 +67,9 @@ const routes = [{
 
   },
   {
-    path: '/:allInfo/',
     name: 'information',
+
+    path: '/information/:allInfo',
     component: Information,
     meta: {
       //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
@@ -75,11 +79,20 @@ const routes = [{
 
 ]
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  routes,
+  mode: 'history' // short for `routes: routes`
 })
 
 new Vue({
   el: '#app',
+  components: {
+    Login,
+    SignUp,
+    Form,
+    Posts,
+    Information,
+    SpecificInfo
+  },
   router,
   render: h => h(App)
 })

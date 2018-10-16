@@ -22,7 +22,7 @@
         <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
         <br>
         <label for="routeCoor">Coordinates: </label>
-        <input type="text" v-model="newPosts.lostItemLocation" disabled/>
+        <input type="text" v-model="newPosts.lostItemLocation" disabled />
         <p id="routeCoor">Current Coordinates{{this.coordinates}}</p>
 
 
@@ -48,6 +48,9 @@
   import './firebase';
   import {
     usersRef
+  } from './firebase';
+  import {
+    privateRef
   } from './firebase';
 
   import App from './App.vue'
@@ -80,8 +83,7 @@
         coordinates: null,
         authUser: null,
         newPosts: {
-
-          //userId: firebase.auth().currentUser.uid,
+          userId: firebase.auth().currentUser.uid,
           //email: firebase.auth().currentUser.email,
           //item_info: {
           itemName: '',
@@ -96,17 +98,23 @@
 
     },
     firebase: {
-      usersData: usersRef
+      usersData: usersRef,
+      privateData: privateRef
     },
     methods: {
       addPost() {
-        usersRef.push({
+
+        //usersRef.push({
+        //item_info: this.newPosts
+        //}),
+        var keyRef = usersRef.push({
+          item_info: this.newPosts
+        });
+        privateRef.child(firebase.auth().currentUser.uid).set({
           private_info: {
             userId: firebase.auth().currentUser.uid,
             email: firebase.auth().currentUser.email
           },
-          item_info: this.newPosts,
-
         })
         //var exampleRef = usersRef.child('Posts').push();
         //usersRef.child("userId").push(this.authUser.uid);
@@ -116,16 +124,11 @@
         this.newPosts.itemDescription = '',
           this.newPosts.itemDate = '',
           this.newPosts.lostItemLocation = ''
-      },
-      signIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        console.log('logged in')
-      },
-      signOut() {
-        firebase.auth().signOut()
-        console.log('logged out' + this.authUser.email)
-      },
 
+        var currentKey = keyRef.getKey();
+        console.log(currentKey)
+        alert("google.com")
+      },
       ItemCoordinates(location) {
         this.coordinates = {
           lat: location.latLng.lat(),
@@ -144,7 +147,6 @@
       })
     }
   }
-
 </script>
 
 <style>
@@ -180,5 +182,4 @@
     display: flex;
     justify-content: center;
   }
-
 </style>

@@ -14,4 +14,6 @@ import {
   
   export const db = app.database();
   export const usersRef = db.ref('usersRef');
+  export const privateRef = db.ref('privateRef');
+
   

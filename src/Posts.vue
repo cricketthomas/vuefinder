@@ -12,19 +12,24 @@
 
             <div>
               <strong>Item Information:</strong>
-              <h5>Lost Item: {{post.item_info.itemName}}</h5>
+              <p>Lost Item: {{post.item_info.itemName}}</p>
+              <p>Lost description: {{post.item_info.itemDescription}}</p>
+
               <br>
               <strong>Contact Information:</strong> <br>
               Email: {{post.item_info.contactEmail}} <br>
               Phone:{{post.item_info.contactPhone}}
+
             </div>
+
             <router-link :to="{ name: 'information', params: { allInfo: post.item_info }}">Details</router-link>
 
 
-            <button v-show="authUser.uid == post.private_info.userId" @click="deletePost(post)">Delete</button>
+            <button v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
             <hr>
+
           </div>
-          
+
         </div>
 
       </div>
@@ -43,7 +48,9 @@
   import {
     usersRef
   } from './firebase';
-
+  import {
+    privateRef
+  } from './firebase';
   export default {
     name: 'posts',
     data() {
@@ -68,7 +75,7 @@
         usersRef.child(post['.key']).remove()
         console.log("Remove post Sucess")
       }
-      
+
 
     },
     created() {
@@ -78,5 +85,4 @@
 
     }
   }
-
 </script>
