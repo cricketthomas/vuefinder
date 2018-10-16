@@ -9,9 +9,9 @@
       <router-link to="signup">Sign Up</router-link>
     </div>
     <div v-else>
-      <router-link to="./form">Form</router-link>
+      <router-link to="/form">Form</router-link>
       <br>
-      <router-link to="./posts">Posts</router-link>
+      <router-link to="/posts">Posts</router-link>
       <br>
       <button @click="signOut()">Sign Out: {{authUser.email}}</button>
     </div>
