@@ -16,8 +16,10 @@
 <script>
   import Vue from 'vue';
   import * as VueGoogleMaps from "vue2-google-maps";
-import './firebase';
-import firebase, { functions} from 'firebase'
+  import './firebase';
+  import firebase, {
+    functions
+  } from 'firebase'
   export default {
     name: 'information',
     props: ['allInfo'],
@@ -46,10 +48,12 @@ import firebase, { functions} from 'firebase'
 
     }
   }
+
 </script>
 <style>
   #map {
     display: flex;
     justify-content: center;
   }
+
 </style>

@@ -126,8 +126,7 @@
           this.newPosts.lostItemLocation = ''
 
         var currentKey = keyRef.getKey();
-        console.log(currentKey)
-        alert("google.com")
+       window.location.href = "http://localhost:8080/specificinfo/" + currentKey.slice(1, 25);
       },
       ItemCoordinates(location) {
         this.coordinates = {
@@ -147,6 +146,7 @@
       })
     }
   }
+
 </script>
 
 <style>
@@ -182,4 +182,5 @@
     display: flex;
     justify-content: center;
   }
+
 </style>

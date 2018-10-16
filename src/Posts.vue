@@ -14,8 +14,6 @@
               <strong>Item Information:</strong>
               <p>Lost Item: {{post.item_info.itemName}}</p>
               <p>Lost description: {{post.item_info.itemDescription}}</p>
-
-              <br>
               <strong>Contact Information:</strong> <br>
               Email: {{post.item_info.contactEmail}} <br>
               Phone:{{post.item_info.contactPhone}}
@@ -23,9 +21,8 @@
             </div>
 
             <router-link :to="{ name: 'information', params: { allInfo: post.item_info }}">Details</router-link>
-
-
             <button v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
+            <router-link :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 25) }}">Shareable Link</router-link>
             <hr>
 
           </div>
@@ -85,4 +82,5 @@
 
     }
   }
+
 </script>

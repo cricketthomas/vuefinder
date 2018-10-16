@@ -38,7 +38,7 @@ const routes = [{
   {
     name: "specificinfo",
 
-    path: '/specificinfo/:key',
+    path: '/specificinfo/:postkey',
     component: SpecificInfo,
     props: true
   },
