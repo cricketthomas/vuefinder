@@ -1,0 +1,184 @@
+<template>
+  <div>
+    <div v-if="authUser != null">
+      <h1>Hi, {{authUser.email}}!</h1>
+      <hr>
+      <h3>Your Posts</h3>
+      <div v-for="usersPosts in usersData" v-bind:key="usersPosts['.key']">
+        <div v-show="authUser.uid == usersPosts.item_info.userId">
+          <div v-if="!usersPosts.edit">
+            {{usersPosts}}
+            <hr>
+            <button @click="setEdit(usersPosts['.key'])">Edit</button>
+          </div>
+
+          <div v-else>
+            <fieldset>
+              <h3>Enter your items details below:</h3>
+              <label for="itemName">Item Name</label>
+              <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="usersPosts.item_info.itemName">
+              <br>
+              <label for="itemDescription">Item Description</label>
+              <textarea id="itemDescription" placeholder="Please descirbe the item you lost." v-model="usersPosts.item_info.itemDescription" />
+              <br>
+              <label for="itemDate">Date Lost</label>
+              <input type="date" id="itemDate" v-model="usersPosts.item_info.itemDate">
+              <br>
+              <label for="contactEmail"> Contact Email: </label>
+              <input type="email" id="contactEmail" v-model="usersPosts.item_info.contactEmail">
+              <br>
+              <label for="tele"> Telephone: </label>
+              <input type="tel" id="tel" maxlength="11" v-model="usersPosts.item_info.contactPhone">
+              <br>
+              <input type="radio" id="found" value="Found" v-model="usersPosts.item_info.isFound" class="radio">
+              <label for="found">Found</label>
+              <input type="radio" id="notFound" value="Not Found" checked v-model="usersPosts.item_info.isFound" class="radio">
+              <label for="notFound">Not Found</label>
+              <br>
+              <span>Status: {{ usersPosts.item_info.isFound }}</span>
+              <br>
+              <label for="routeCoor">Coordinates: </label>
+              <input type="text" v-model="usersPosts.lostItemLocation" disabled />
+              <p id="routeCoor">Current Coordinates{{usersPosts.item_info.lostItemLocation}}</p>
+
+              
+        <div id="map">
+          <gmap-map :center="JSON.parse(usersPosts.item_info.lostItemLocation)" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
+            <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="false" />
+          </gmap-map>
+        </div>
+
+
+          
+              <button @click="cancelEdit(usersPosts['.key'])">Cancel</button>
+              <button @click="removePost(usersPosts)">Remove?</button>
+
+              <button disabled>Submit Update</button>
+
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <router-view></router-view>
+  </div>
+</template>
+<script>
+import Vue from "vue";
+import App from "./App.vue";
+import * as VueGoogleMaps from "vue2-google-maps";
+import "./firebase";
+import firebase, { functions } from "firebase";
+import { usersRef } from "./firebase";
+import { privateRef } from "./firebase";
+export default {
+  name: "profile",
+  data() {
+    return {
+      center: {
+        lat: 10.0,
+        lng: 10.0
+      },
+      mapLocation: {
+        lat: 38.98,
+        lng: -76.94
+      },
+      markers: [
+        {
+          position: {
+            lat: 10.0,
+            lng: 10.0
+          }
+        },
+        {
+          position: {
+            lat: 11.0,
+            lng: 11.0
+          }
+        }
+      ],
+      //coordinates: null,
+      authUser: null,
+      newPosts: {
+        userId: firebase.auth().currentUser.uid,
+        //email: firebase.auth().currentUser.email,
+        //item_info: {
+        itemName: "",
+        itemDescription: "",
+        itemDate: "",
+        contactPhone: "",
+        contactEmail: "",
+        isFound: [],
+        dateModified: Date(document.lastModified),
+        lostItemLocation: this.routeCoor,
+        edit: false
+
+        //}
+      }
+    };
+  },
+  firebase: {
+    usersData: usersRef
+  },
+  methods: {
+    setEdit(user) {
+      usersRef.child(user).update({
+        edit: true
+      });
+      console.log("edit reached");
+    },
+    saveEdit(person) {
+        const key = person['.key'];
+        usersRef.child(key).set({
+          name: person.name,
+          email: person.email,
+          dateModified: Date(document.lastModified),
+          //InactiveUser: person.InactiveUser
+        })
+        usersRef.child(key).update({
+          acesss: person.acesss,
+          inactiveUser: person.inactiveUser,
+          edit: false
+        })
+        //console.log(this.person.acesss)
+      },
+
+    removePost(user) {
+        usersRef.child(user['.key']).remove()
+        console.log("Remove Post Sucess")
+      },
+
+    cancelEdit(user) {
+      usersRef.child(user).update({
+        edit: false
+      });
+    },
+
+    ItemCoordinates(location) {
+      this.coordinates = {
+        lat: location.latLng.lat(),
+        lng: location.latLng.lng()
+      };
+      console.log(JSON.stringify(this.coordinates.lat));
+      console.log(JSON.stringify(this.coordinates.lng));
+      this.usersPosts.item_info.lostItemLocation = JSON.stringify(this.coordinates);
+      var routeCoor = (document.getElementById(
+        "routeCoor"
+      ).value = JSON.stringify(this.coordinates));
+      //let test = JSON.stringify(this.coordinates)
+    }
+  },
+
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.authUser = user;
+    });
+  }
+};
+</script>
+<style>
+#map {
+  display: flex;
+  justify-content: center;
+}
+</style>

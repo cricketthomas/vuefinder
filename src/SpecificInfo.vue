@@ -30,7 +30,7 @@
     data() {
       return {
         dataLoaded: false,
-        info: null,
+        info: null
       }
     },
     methods: {

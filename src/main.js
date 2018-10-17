@@ -6,8 +6,8 @@ import SignUp from './SignUp.vue';
 import Form from './Form.vue';
 import Posts from './Posts.vue';
 import Information from './Information.vue';
+import Profile from './Profile.vue';
 import SpecificInfo from './SpecificInfo.vue';
-
 import firebase from 'firebase';
 import VueFire from 'vuefire';
 import './firebase';
@@ -68,9 +68,17 @@ const routes = [{
   },
   {
     name: 'information',
-
     path: '/information/:allInfo',
     component: Information,
+    meta: {
+      //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
+      // Currently there is just pseduo authentication
+    }
+  },
+  {
+    name: 'profile',
+    path: '/profile/',
+    component: Profile,
     meta: {
       //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
       // Currently there is just pseduo authentication

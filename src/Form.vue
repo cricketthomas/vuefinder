@@ -21,6 +21,16 @@
         <label for="tele"> Telephone: </label>
         <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
         <br>
+        <input type="radio" id="found" value="Found" v-model="newPosts.isFound" class="radio">
+        <label for="found">Found</label>
+
+        <input type="radio" id="notFound" value="Not Found" checked v-model="newPosts.isFound" class="radio">
+        <label for="notFound">Not Found</label>
+        <br>
+
+        <span>Status: {{ newPosts.isFound }}</span>
+
+        <br>
         <label for="routeCoor">Coordinates: </label>
         <input type="text" v-model="newPosts.lostItemLocation" disabled />
         <p id="routeCoor">Current Coordinates{{this.coordinates}}</p>
@@ -91,6 +101,8 @@
           itemDate: '',
           contactPhone: '',
           contactEmail: '',
+          isFound: [],
+          dateModified: Date(document.lastModified),
           lostItemLocation: this.routeCoor,
           //}
         }
@@ -108,7 +120,9 @@
         //item_info: this.newPosts
         //}),
         var keyRef = usersRef.push({
-          item_info: this.newPosts
+          item_info: this.newPosts,
+          edit: false
+
         });
         privateRef.child(firebase.auth().currentUser.uid).set({
           private_info: {
@@ -126,7 +140,7 @@
           this.newPosts.lostItemLocation = ''
 
         var currentKey = keyRef.getKey();
-       window.location.href = "http://localhost:8080/specificinfo/" + currentKey.slice(1, 25);
+        this.$router.push("specificinfo/" + currentKey.slice(1, 25))
       },
       ItemCoordinates(location) {
         this.coordinates = {
