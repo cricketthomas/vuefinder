@@ -7,6 +7,9 @@
       <div v-for="usersPosts in usersData" v-bind:key="usersPosts['.key']">
         <div v-show="authUser.uid == usersPosts.item_info.userId">
           <div v-if="!usersPosts.edit">
+            <br>
+            {{usersPosts['.key']}}
+            <br>
             {{usersPosts}}
             <hr>
             <button @click="setEdit(usersPosts['.key'])">Edit</button>
@@ -39,7 +42,7 @@
               <br>
               <label for="routeCoor">Coordinates: </label>
               <input type="text" v-model="usersPosts.lostItemLocation" disabled />
-              <p id="routeCoor">Current Coordinates{{usersPosts.item_info.lostItemLocation}}</p>
+              <p id="routeCoor">Current Coordinates {{usersPosts.item_info.lostItemLocation}}</p>
 
               
         <div id="map">
@@ -49,7 +52,7 @@
         </div>
 
 
-          
+              <button @click="saveEdit(usersPosts)">Save</button>
               <button @click="cancelEdit(usersPosts['.key'])">Cancel</button>
               <button @click="removePost(usersPosts)">Remove?</button>
 
@@ -127,19 +130,36 @@ export default {
       });
       console.log("edit reached");
     },
-    saveEdit(person) {
-        const key = person['.key'];
+    saveEdit(post) {
+        const key = post['.key'];
         usersRef.child(key).set({
-          name: person.name,
-          email: person.email,
-          dateModified: Date(document.lastModified),
+           edit: false,
+      item_info: {
+        userId: firebase.auth().currentUser.uid,
+        //email: firebase.auth().currentUser.email,
+        //item_info: {
+        itemName: "",
+        itemDescription: "",
+        itemDate: "",
+        contactPhone: "",
+        contactEmail: "",
+        isFound: "Found",
+        dateModified: Date(document.lastModified),
+        lostItemLocation: JSON.stringify({lat: 38.98, lng: -76.94})
+     
+
+        //}
+      },
+       
+        
           //InactiveUser: person.InactiveUser
         })
-        usersRef.child(key).update({
-          acesss: person.acesss,
-          inactiveUser: person.inactiveUser,
-          edit: false
-        })
+
+        //usersRef.child(key).update({
+          //acesss: person.acesss,
+          //inactiveUser: person.inactiveUser,
+          //edit: false
+        //})
         //console.log(this.person.acesss)
       },
 
