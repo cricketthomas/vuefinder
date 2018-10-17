@@ -3,10 +3,10 @@
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
     <div v-if="!authUser">
-      <router-link to="login">Login In</router-link>
+      <router-link to="/login">Login In</router-link>
       <br>
       <br>
-      <router-link to="signup">Sign Up</router-link>
+      <router-link to="/signup">Sign Up</router-link>
     </div>
     <div v-else>
       <router-link to="/form">Form</router-link>
