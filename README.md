@@ -15,7 +15,7 @@
 8. Style
 9. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
 
-#Future Plans:
+# Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
 
 ## Build Setup
