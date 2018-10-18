@@ -23,50 +23,58 @@
 <script>
   import firebase, {
     functions
-  } from 'firebase'
+  } from "firebase";
 
   export default {
-    name: 'login',
+    name: "login",
     data() {
       return {
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         authUser: null
-      }
+      };
     },
     methods: {
       signIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function (error) {
-          console.log('logged in')
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert(errorMessage);
-        });
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .catch(function (error) {
+            console.log("logged in");
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+          });
       },
       signOut() {
-        firebase.auth().signOut().then(function () {
-          console.log('logged out' + this.authUser.email)
-        }).catch(function (error) {
-          // An error happened.
-        });
+        firebase
+          .auth()
+          .signOut()
+          .then(function () {
+            console.log("logged out" + this.authUser.email);
+          })
+          .catch(function (error) {
+            // An error happened.
+          });
       },
       resetPassword() {
         var auth = firebase.auth();
         var emailAddress = prompt("Enter your email");
-        auth.sendPasswordResetEmail(emailAddress).then(function () {
-          // Email sent.
-        }).catch(function (error) {
-          alert(error);
-        });
+        auth
+          .sendPasswordResetEmail(emailAddress)
+          .then(function () {
+            // Email sent.
+          })
+          .catch(function (error) {
+            alert(error);
+          });
       }
-
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
-        this.authUser = user
-      })
-
+        this.authUser = user;
+      });
     }
-  }
+  };
 
 </script>

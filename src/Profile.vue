@@ -41,13 +41,13 @@
               <span>Status: {{ usersPosts.item_info.isFound }}</span>
               <br>
               <label for="routeCoor">Coordinates: </label>
-              <input type="text" v-model="usersPosts.lostItemLocation" disabled />
-              <p id="routeCoor">Current Coordinates {{usersPosts.item_info.lostItemLocation}}</p>
+              <input type="text" id="routeCoor" v-model="usersPosts.item_info.lostItemLocation" disabled />
+              <p>Current Coordinates {{usersPosts.item_info.lostItemLocation}}</p>
 
               
         <div id="map">
           <gmap-map :center="JSON.parse(usersPosts.item_info.lostItemLocation)" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
-            <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="false" />
+            <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="true" @drag="ItemCoordinates"/>
           </gmap-map>
         </div>
 
@@ -100,35 +100,19 @@ export default {
           }
         }
       ],
-      //coordinates: null,
+      coordinates: null,
       authUser: null,
-      newPosts: {
-        userId: firebase.auth().currentUser.uid,
-        //email: firebase.auth().currentUser.email,
-        //item_info: {
-        itemName: "",
-        itemDescription: "",
-        itemDate: "",
-        contactPhone: "",
-        contactEmail: "",
-        isFound: [],
-        dateModified: Date(document.lastModified),
-        lostItemLocation: this.routeCoor,
-        edit: false
-
-        //}
-      }
     };
   },
-  firebase: {
-    usersData: usersRef
+    firebase: {
+      usersData: usersRef
   },
   methods: {
     setEdit(user) {
       usersRef.child(user).update({
         edit: true
       });
-      console.log("edit reached");
+        console.log("edit reached");
     },
     saveEdit(post) {
         const key = post['.key'];
@@ -136,31 +120,21 @@ export default {
            edit: false,
       item_info: {
         userId: firebase.auth().currentUser.uid,
-        //email: firebase.auth().currentUser.email,
-        //item_info: {
-        itemName: "",
-        itemDescription: "",
-        itemDate: "",
-        contactPhone: "",
-        contactEmail: "",
-        isFound: "Found",
+        itemName: post.item_info.itemName,
+        itemDescription: post.item_info.itemDescription,
+        itemDate: post.item_info.itemDate,
+        contactPhone: post.item_info.contactPhone,
+        contactEmail: post.item_info.contactEmail,
+        isFound: post.item_info.isFound,
         dateModified: Date(document.lastModified),
-        lostItemLocation: JSON.stringify({lat: 38.98, lng: -76.94})
-     
-
-        //}
+        lostItemLocation: JSON.stringify(this.coordinates) 
       },
        
         
-          //InactiveUser: person.InactiveUser
+         
         })
 
-        //usersRef.child(key).update({
-          //acesss: person.acesss,
-          //inactiveUser: person.inactiveUser,
-          //edit: false
-        //})
-        //console.log(this.person.acesss)
+        
       },
 
     removePost(user) {
@@ -181,11 +155,7 @@ export default {
       };
       console.log(JSON.stringify(this.coordinates.lat));
       console.log(JSON.stringify(this.coordinates.lng));
-      this.usersPosts.item_info.lostItemLocation = JSON.stringify(this.coordinates);
-      var routeCoor = (document.getElementById(
-        "routeCoor"
-      ).value = JSON.stringify(this.coordinates));
-      //let test = JSON.stringify(this.coordinates)
+      var routeCoor = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
     }
   },
 
@@ -193,7 +163,14 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       this.authUser = user;
     });
-  }
+  },
+  computed: {
+      cleaningCoordinates() {
+        var parsedLocation = JSON.parse(this.usersPosts.item_info.lostItemLocation)
+        return parsedLocation
+
+      }
+    }
 };
 </script>
 <style>
