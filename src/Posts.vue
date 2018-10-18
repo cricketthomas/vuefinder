@@ -7,7 +7,9 @@
     <div v-else>
       <h1>V else test</h1>
       <div>
-        <div v-for="post in usersData" v-bind:key="post['.key']">
+        <input type="text" v-model="search" placeholder="search by item name">
+        <p>Vue chart kick here: {{usersData.length}}</p>
+        <div v-for="post in filteredPosts" v-bind:key="post['.key']">
           <div>
 
             <div>
@@ -52,7 +54,8 @@
     name: 'posts',
     data() {
       return {
-        authUser: null
+        authUser: null,
+        search: ''
       }
     },
     firebase: {
@@ -71,8 +74,20 @@
       deletePost(post) {
         usersRef.child(post['.key']).remove()
         console.log("Remove post Sucess")
-      }
+      },
 
+
+
+    },
+    computed: {
+
+      filteredPosts() {
+        let searching = (this.search || "").toLowerCase().trim()
+        return this.usersData.filter(function (item) {
+          let itemNameSearch = (item.item_info.itemDescription || "").toLowerCase()
+          return itemNameSearch.indexOf(searching) > -1
+        })
+      }
 
     },
     created() {
