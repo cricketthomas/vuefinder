@@ -9,24 +9,24 @@
       <div>
         <input type="text" v-model="search" placeholder="search by item name">
         <p>Vue chart kick here: {{usersData.length}}</p>
+
         <div v-for="post in filteredPosts" v-bind:key="post['.key']">
           <div>
 
             <div>
-              <strong>Item Information:</strong>
-              <p>Lost Item: {{post.item_info.itemName}}</p>
-              <p>Lost description: {{post.item_info.itemDescription}}</p>
+              <strong>Lost Item Information:</strong>
+              <p>Item Name{{post.item_info.itemName}}</p>
+              <p>Description: {{post.item_info.itemDescription}}</p>
               <strong>Contact Information:</strong> <br>
               Email: {{post.item_info.contactEmail}} <br>
               Phone:{{post.item_info.contactPhone}}
-
             </div>
 
-            <router-link :to="{ name: 'information', params: { allInfo: post.item_info }}">Details</router-link>
+            <router-link v-show="false" :to="{ name: 'information', params: { allInfo: post.item_info }}">Details</router-link>
             <button v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
-            <router-link :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 25) }}">Shareable Link</router-link>
+            <router-link :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
             <hr>
-
+            <!-- -->
           </div>
 
         </div>
@@ -55,7 +55,9 @@
     data() {
       return {
         authUser: null,
-        search: ''
+        search: '',
+        foundCount: 0,
+        notFoundCount: 0,
       }
     },
     firebase: {
@@ -75,7 +77,15 @@
         usersRef.child(post['.key']).remove()
         console.log("Remove post Sucess")
       },
+      foundFilter() {
+        for (var i = 0; i < this.usersData.length; i++) {
+          if (this.usersData.item_info.isFound == "Found") {
+            foundCount++;
+          }
+          notFoundCount++;
+        }
 
+      }
 
 
     },
@@ -87,13 +97,16 @@
           let itemNameSearch = (item.item_info.itemDescription || "").toLowerCase()
           return itemNameSearch.indexOf(searching) > -1
         })
-      }
+      },
+
 
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
         this.authUser = user
       })
+      //foundFilter();
+
 
     }
   }
