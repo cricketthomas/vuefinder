@@ -121,7 +121,8 @@
         //}),
         var keyRef = usersRef.push({
           item_info: this.newPosts,
-          edit: false
+          edit: false,
+          uid: firebase.auth().currentUser.uid,
 
         });
         privateRef.child(firebase.auth().currentUser.uid).set({
@@ -160,7 +161,6 @@
       })
     }
   }
-
 </script>
 
 <style>
@@ -196,5 +196,4 @@
     display: flex;
     justify-content: center;
   }
-
 </style>

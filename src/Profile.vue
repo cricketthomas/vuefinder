@@ -117,7 +117,9 @@ export default {
     saveEdit(post) {
         const key = post['.key'];
         usersRef.child(key).set({
-           edit: false,
+          edit: false,
+          uid: firebase.auth().currentUser.uid,
+
       item_info: {
         userId: firebase.auth().currentUser.uid,
         itemName: post.item_info.itemName,
