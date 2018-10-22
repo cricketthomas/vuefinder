@@ -13,7 +13,7 @@
       <br>
       <router-link to="/posts">Posts</router-link>
       <br>
-       <router-link to="/profile">Profile</router-link>
+      <router-link to="/profile">Profile</router-link>
       <br>
       <button @click="signOut()">Sign Out: {{authUser.email}}</button>
     </div>
@@ -43,7 +43,7 @@
       },
       signOut() {
         firebase.auth().signOut()
-        console.log('logged out ' +this.authUser.email + ' UID: '+ this.authUser.uid)
+        console.log('logged out ' + this.authUser.email + ' UID: ' + this.authUser.uid)
       }
 
     },

@@ -9,11 +9,11 @@
 3. Graph for lost items found and not found
 4. ~~Add found/not found so people can mark items them found~~ **Style binding for them and hide them if they are found.** 
 5. ~~Unique post url~~
-**Security rules matter alot for this**
-6. [call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)
-7. Polish Pages data output and search functionality. 
-8. Style
-9. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
+6. A. ~~**Security rules matter alot for this**~~ Added user based security rules
+7. [call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)
+8. Polish Pages data output and search functionality. 
+9. Style
+10. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
 
 # Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
