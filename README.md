@@ -6,10 +6,10 @@
 ### Not in order to be created. 
 1. Loading page.
 2. ~~User post page for all personal posts, and an edit, save, and cancel button and crud button~~
-3. Graph for lost items found and not found
+3. ~~Graph for lost items found and not found~~
 4. ~~Add found/not found so people can mark items them found~~ **Style binding for them and hide them if they are found.** 
 5. ~~Unique post url~~
-6. A. ~~**Security rules matter alot for this**~~ Added user based security rules
+6. ~~**Security rules matter alot for this**~~ Added user based security rules
 7. [call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)
 8. Polish Pages data output and search functionality. 
 9. Style
