@@ -15,6 +15,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 
+
 Vue.use(VueChartkick, {
   adapter: Chart
 })

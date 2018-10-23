@@ -64,7 +64,12 @@
       };
     },
     firebase: {
-      usersData: usersRef
+      usersData: usersRef,
+      //cancelCallback: function () {},
+      // this is called once the data has been retrieved from firebase
+      //readyCallback: function(error) {
+      //alert("ready");
+      //}
     },
 
     methods: {
@@ -106,11 +111,16 @@
         let searching = (this.search || "").toLowerCase().trim();
         return this.usersData.filter(function (item) {
           let nameSearch = (item.item_info.itemName || "").toLowerCase();
-          let descriptionSearch = (item.item_info.itemDescription || "").toLowerCase();
+          let descriptionSearch = (
+            item.item_info.itemDescription || ""
+          ).toLowerCase();
           let emailSearch = (item.item_info.contactEmail || "").toLowerCase();
 
-          return nameSearch.indexOf(searching) > -1 || descriptionSearch.indexOf(searching) > -1 || emailSearch.indexOf(
-            searching) > -1;
+          return (
+            nameSearch.indexOf(searching) > -1 ||
+            descriptionSearch.indexOf(searching) > -1 ||
+            emailSearch.indexOf(searching) > -1
+          );
         });
       },
 

@@ -41,8 +41,7 @@
               <span>Status: {{ usersPosts.item_info.isFound }}</span>
               <br>
               <label for="routeCoor">Coordinates: </label>
-              <input type="text" id="routeCoor" v-model="usersPosts.item_info.lostItemLocation" disabled />
-              <p>Current Coordinates {{usersPosts.item_info.lostItemLocation}}</p>
+              <input type="text" id="routeCoor" v-model="usersPosts.item_info.lostItemLocation" />
 
               
         <div id="map">
@@ -55,9 +54,6 @@
               <button @click="saveEdit(usersPosts)">Save</button>
               <button @click="cancelEdit(usersPosts['.key'])">Cancel</button>
               <button @click="removePost(usersPosts)">Remove?</button>
-
-              <button disabled>Submit Update</button>
-
             </fieldset>
           </div>
         </div>
@@ -129,7 +125,7 @@ export default {
         contactEmail: post.item_info.contactEmail,
         isFound: post.item_info.isFound,
         dateModified: Date(document.lastModified),
-        lostItemLocation: JSON.stringify(this.coordinates) 
+        lostItemLocation: this.coordinatesNull
       },
        
         
@@ -158,7 +154,8 @@ export default {
       console.log(JSON.stringify(this.coordinates.lat));
       console.log(JSON.stringify(this.coordinates.lng));
       var routeCoor = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
-    }
+    },
+    
   },
 
   created() {
@@ -171,7 +168,16 @@ export default {
         var parsedLocation = JSON.parse(this.usersPosts.item_info.lostItemLocation)
         return parsedLocation
 
+      },
+      coordinatesNull(){
+        if(this.coordinates === null){
+          return JSON.stringify(this.mapLocation) //mapLocation
+        }
+          return JSON.stringify(this.coordinates)
+        
       }
+
+      
     }
 };
 </script>
