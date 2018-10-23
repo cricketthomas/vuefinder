@@ -17,8 +17,7 @@
     "vue-chartkick": "^0.5.0",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.10.2",
-    "vuefire": "^1.4.5",
-    "vuelidate": "^0.7.4"
+    "vuefire": "^1.4.5"
   },
   "browserslist": [
     "> 1%",
