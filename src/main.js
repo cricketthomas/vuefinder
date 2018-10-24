@@ -57,8 +57,7 @@ const routes = [{
     name: 'form',
     component: Form,
     meta: {
-      requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
-      // Currently there is just pseduo authentication
+      requiresAuth: true
     }
 
   },
@@ -76,8 +75,7 @@ const routes = [{
     path: '/information/:allInfo',
     component: Information,
     meta: {
-      //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
-      // Currently there is just pseduo authentication
+      requiresAuth: true
     }
   },
   {
@@ -85,15 +83,29 @@ const routes = [{
     path: '/profile/',
     component: Profile,
     meta: {
-      //requiresAuth: true //https://router.vuejs.org/guide/advanced/meta.html
-      // Currently there is just pseduo authentication
+      requiresAuth: true
     }
   }
-
 ]
+
+
+
 const router = new VueRouter({
   routes,
   mode: 'history' // short for `routes: routes`
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const currentUser = firebase.auth().currentUser
+
+  if (requiresAuth && !currentUser) {
+    next('/login')
+  } else if (requiresAuth && currentUser) {
+    next()
+  } else {
+    next()
+  }
 })
 
 new Vue({
@@ -104,7 +116,8 @@ new Vue({
     Form,
     Posts,
     Information,
-    SpecificInfo
+    SpecificInfo,
+    Profile
   },
   router,
   render: h => h(App)

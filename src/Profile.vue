@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="authUser != null">
+    <div v-if="authUser">
       <h1>Hi, {{authUser.email}}!</h1>
       <hr>
       <h3>Your Posts</h3>

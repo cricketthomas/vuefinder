@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div v-if="!authUser">
-    </div>
-    <div v-else>
+
+    <div>
       <div>
         <ul class="errors">
           <li v-show="!validation.itemName">Name cannot be empty.</li>
           <li v-show="!validation.contactEmail">Please provide a valid email address.</li>
+          <li v-show="!validation.lostItemLocation">Please provide a location</li>
+
         </ul>
       </div>
       <fieldset>
@@ -43,8 +44,8 @@
 
 
           <div id="map">
-            <gmap-map :center="mapLocation" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
-              <gmap-marker :position="mapLocation" :draggable="true" @drag="ItemCoordinates" />
+            <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
+              <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
             </gmap-map>
 
 
@@ -80,7 +81,7 @@
           lat: 10.0,
           lng: 10.0
         },
-        mapLocation: {
+        mapPosition: {
           lat: 38.98,
           lng: -76.94
         },
@@ -97,6 +98,7 @@
         }],
         coordinates: null,
         authUser: null,
+
         newPosts: {
           userId: firebase.auth().currentUser.uid,
           //email: firebase.auth().currentUser.email,
@@ -106,7 +108,7 @@
           itemDate: '',
           contactPhone: '',
           contactEmail: '',
-          isFound: [],
+          isFound: 'Not Found',
           dateModified: Date(document.lastModified),
           lostItemLocation: this.routeCoor,
           //}
@@ -145,7 +147,8 @@
             this.newPosts.itemDescription = '',
             this.newPosts.itemDate = '',
             this.newPosts.lostItemLocation = ''
-
+          this.newPosts.contactPhone = ''
+          this.newPosts.contactEmail = ''
           var currentKey = keyRef.getKey();
           this.$router.push("specificinfo/" + currentKey.slice(1, 25))
         }
@@ -174,6 +177,7 @@
 
         return {
           itemName: !!this.newPosts.itemName.trim(),
+          lostItemLocation: !!this.newPosts.lostItemLocation,
           contactEmail: emailRE.test(this.newPosts.contactEmail)
         }
       },
