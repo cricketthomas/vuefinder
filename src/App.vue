@@ -44,6 +44,8 @@
       signOut() {
         firebase.auth().signOut()
         console.log('logged out ' + this.authUser.email + ' UID: ' + this.authUser.uid)
+        this.$router.push("/")
+
       }
 
     },
