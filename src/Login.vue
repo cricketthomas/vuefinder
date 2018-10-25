@@ -3,6 +3,8 @@
     <div v-if="!authUser">
       <h1>Login</h1>
       <label>Email
+        <div id="message">
+        </div>
         <br>
         <input type="email" placeholder="Email" v-model="email" required />
       </label>
@@ -18,6 +20,9 @@
     <div v-else>
       <button @click="signOut()" disabled>Log Out</button>
     </div>
+
+
+
   </div>
 </template>
 <script>
@@ -31,7 +36,8 @@
       return {
         email: "",
         password: "",
-        authUser: null
+        authUser: null,
+        //errorAlert: false,
       };
     },
     methods: {
@@ -43,7 +49,12 @@
             console.log("logged in");
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert(errorMessage);
+            var errorAlert = true
+            var element = document.getElementById('message').innerHTML =
+              '<div class="uk-alert-danger uk-align-center" uk-alert style="width: 30vw; justi"> <a class="uk-alert-close" uk-close></a>' +
+              errorMessage +
+              '</div>'
+            //alert(errorMessage);
           });
       },
       signOut() {
@@ -68,7 +79,8 @@
           .catch(function (error) {
             alert(error);
           });
-      }
+      },
+
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {

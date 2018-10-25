@@ -3,7 +3,7 @@
 
     <div>
       <div>
-        <ul class="errors">
+        <ul class="errors" v-show="false">
           <li v-show="!validation.itemName">Name cannot be empty.</li>
           <li v-show="!validation.contactEmail">Please provide a valid email address.</li>
           <li v-show="!validation.lostItemLocation">Please provide a location</li>
@@ -14,17 +14,17 @@
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
           <label for="itemName">Item Name</label>
-          <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="newPosts.itemName">
+          <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="newPosts.itemName" required>
           <br>
           <label for="itemDescription">Item Description</label>
           <textarea id="itemDescription" placeholder="Please descirbe the item you lost." v-model="newPosts.itemDescription">
         </textarea>
           <br>
           <label for="itemDate">Date Lost</label>
-          <input type="date" id="itemDate" v-model="newPosts.itemDate">
+          <input type="date" id="itemDate" v-model="newPosts.itemDate" required>
           <br>
           <label for="contactEmail"> Contact Email: </label>
-          <input type="email" id="contactEmail" v-model="newPosts.contactEmail">
+          <input type="email" id="contactEmail" v-model="newPosts.contactEmail" required>
           <br>
           <label for="tele"> Telephone: </label>
           <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
@@ -38,7 +38,7 @@
           <span>Status: {{ newPosts.isFound }}</span>
           <br>
           <label for="routeCoor">Coordinates: </label>
-          <input type="text" v-model="newPosts.lostItemLocation" disabled />
+          <input type="text" v-model="newPosts.lostItemLocation" disabled required>
           <p id="routeCoor">Current Coordinates{{this.coordinates}}</p>
 
 
@@ -123,15 +123,10 @@
     methods: {
       addPost() {
         if (this.isValid) {
-
-          //usersRef.push({
-          //item_info: this.newPosts
-          //}),
           var keyRef = usersRef.push({
             item_info: this.newPosts,
             edit: false,
             uid: firebase.auth().currentUser.uid,
-
           });
           privateRef.child(firebase.auth().currentUser.uid).set({
             private_info: {
@@ -141,16 +136,16 @@
           })
           //var exampleRef = usersRef.child('Posts').push();
           //usersRef.child("userId").push(this.authUser.uid);
-          console.log("Submitted"),
-            console.log("Location " + JSON.stringify(this.lostItemLocation)),
-            this.newPosts.itemName = '',
+          console.log("Submitted")
+          console.log("Location " + JSON.stringify(this.lostItemLocation))
+          this.newPosts.itemName = '',
             this.newPosts.itemDescription = '',
             this.newPosts.itemDate = '',
-            this.newPosts.lostItemLocation = ''
-          this.newPosts.contactPhone = ''
-          this.newPosts.contactEmail = ''
-          var currentKey = keyRef.getKey();
-          this.$router.push("specificinfo/" + currentKey.slice(1, 25))
+            this.newPosts.lostItemLocation = '',
+            this.newPosts.contactPhone = '',
+            this.newPosts.contactEmail = ''
+          var currentKey = keyRef.getKey()
+          this.$router.push("specificinfo/" + currentKey.slice(1, 30))
         }
       },
       ItemCoordinates(location) {

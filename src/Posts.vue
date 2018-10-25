@@ -9,10 +9,9 @@
       <div>
         <input type="text" v-model="search" placeholder="search by item name">
         <p>Vue chart kick here: Found: {{foundFilter}} Not found: {{notFoundFilter}} </p>
-        <pie-chart class="pieChart" :donut="true" :colors="['#666','#b00']" :data="[['Items Returned', foundFilter], ['Items Still Lost', notFoundFilter]]">
-        </pie-chart>
 
-        <button @click="test() ">test</button>
+        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['#666','#b00']" :data="[['Items Returned', foundFilter], ['Items Still Lost', notFoundFilter]]">
+        </pie-chart>
         <div v-for="post in filteredPosts" v-bind:key="post['.key']">
           <div>
 

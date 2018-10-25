@@ -1,7 +1,46 @@
 <template>
   <div id="app">
+
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+      <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+        <div class="uk-navbar-center">
+
+          <ul class="uk-navbar-nav">
+            <li v-show="!authUser">
+              <router-link to="/login">Login In</router-link>
+            </li>
+            <li v-show="!authUser">
+              <router-link to="/signup">Sign Up</router-link>
+            </li>
+
+            <li v-show="authUser">
+              <router-link to="/form">Form</router-link>
+            </li>
+            <li v-show="authUser">
+              <router-link to="/posts">Posts</router-link>
+            </li>
+
+
+            <li v-show="authUser">
+
+              <a uk-icon="user"> Profile</a>
+              <div class="uk-navbar-dropdown">
+                <ul class="uk-nav uk-navbar-dropdown-nav">
+                  <li>
+                    <router-link to="/profile">Profile</router-link>
+                  </li>
+                  <button class="uk-button uk-button-default" @click="signOut()">log out</button>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+
+      </nav>
+    </div>
     <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
+
     <div v-if="!authUser">
       <router-link to="/login">Login In</router-link>
       <br>
@@ -22,51 +61,49 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
-  import './firebase';
+  import firebase from "firebase";
+  import "./firebase";
 
-  import SignUp from './SignUp.vue'
+  import SignUp from "./SignUp.vue";
 
   export default {
-    name: 'app',
+    name: "app",
     data() {
       return {
         msg: "App",
         authUser: null
-      }
+      };
     },
     methods: {
       //account methods
       signIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        console.log('logged in')
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+        console.log("logged in");
       },
       signOut() {
-        firebase.auth().signOut()
-        console.log('logged out ' + this.authUser.email + ' UID: ' + this.authUser.uid)
-        this.$router.push("/")
-
+        firebase.auth().signOut();
+        console.log(
+          "logged out " + this.authUser.email + " UID: " + this.authUser.uid
+        );
+        this.$router.push("/");
       }
-
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
-        this.authUser = user
-      })
-
+        this.authUser = user;
+      });
     }
-  }
+  };
 
 </script>
 
 <style>
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 
   h1,
