@@ -14,23 +14,25 @@
             </li>
 
             <li v-show="authUser">
-              <router-link to="/form">Form</router-link>
+              <router-link to="/form" uk-icon="copy">&nbsp;Form</router-link>
             </li>
             <li v-show="authUser">
-              <router-link to="/posts">Posts</router-link>
+              <router-link to="/posts" uk-icon="thumbnails">&nbsp;Posts</router-link>
+            </li>
+            <li v-show="authUser">
+              <router-link to="/profile" uk-icon="users">&nbsp;Profile</router-link>
             </li>
 
 
             <li v-show="authUser">
 
-              <a uk-icon="user"> Profile</a>
+
+              <a uk-icon="sign-out">&nbsp;User &nbsp;</a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                  <li>
-                    <router-link to="/profile">Profile</router-link>
-                  </li>
-                  <button class="uk-button uk-button-default" @click="signOut()">log out</button>
+                  <button class="uk-button uk-button-danger" @click="signOut()">log out</button>
                 </ul>
+
               </div>
             </li>
           </ul>
@@ -41,21 +43,7 @@
     </div>
     <img src="./assets/logo.png">
 
-    <div v-if="!authUser">
-      <router-link to="/login">Login In</router-link>
-      <br>
-      <br>
-      <router-link to="/signup">Sign Up</router-link>
-    </div>
-    <div v-else>
-      <router-link to="/form">Form</router-link>
-      <br>
-      <router-link to="/posts">Posts</router-link>
-      <br>
-      <router-link to="/profile">Profile</router-link>
-      <br>
-      <button @click="signOut()">Sign Out: {{authUser.email}}</button>
-    </div>
+
     <router-view></router-view>
   </div>
 </template>
@@ -119,10 +107,6 @@
   li {
     display: inline-block;
     margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
   }
 
 </style>

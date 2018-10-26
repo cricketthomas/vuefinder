@@ -6,11 +6,13 @@
         <div id="message">
         </div>
         <br>
-        <input type="email" placeholder="Email" v-model="email" required />
+        <input type="email" placeholder="Email" class="uk-form-width-medium uk-input uk-align-center" v-model="email"
+          required />
       </label>
       <br>
       <label>Password <br>
-        <input type="password" placeholder="Password" v-model="password" required />
+        <input type="password" placeholder="Password" class="uk-form-width-medium uk-input uk-align-center" v-model="password"
+          required />
       </label>
       <br>
       <button @click="signIn()">Log in</button>

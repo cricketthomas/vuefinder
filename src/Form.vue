@@ -10,48 +10,42 @@
 
         </ul>
       </div>
-      <fieldset>
+      <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center">
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
           <label for="itemName">Item Name</label>
-          <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="newPosts.itemName" required>
+          <input type="text" id="itemName" class="uk-input" placeholder="Post Title / Item name" v-model="newPosts.itemName"
+            required>
           <br>
           <label for="itemDescription">Item Description</label>
-          <textarea id="itemDescription" placeholder="Please descirbe the item you lost." v-model="newPosts.itemDescription">
+          <textarea id="itemDescription" class="uk-textarea" placeholder="Please descirbe the item you lost." maxlength="250"
+            v-model="newPosts.itemDescription">
         </textarea>
           <br>
           <label for="itemDate">Date Lost</label>
-          <input type="date" id="itemDate" v-model="newPosts.itemDate" required>
+          <input type="date" id="itemDate" class="uk-input" v-model="newPosts.itemDate" required>
           <br>
           <label for="contactEmail"> Contact Email: </label>
-          <input type="email" id="contactEmail" v-model="newPosts.contactEmail" required>
+          <input type="email" id="contactEmail" class="uk-input" v-model="newPosts.contactEmail" required>
           <br>
           <label for="tele"> Telephone: </label>
-          <input type="tel" id="tel" maxlength="11" v-model="newPosts.contactPhone">
+          <input type="tel" id="tel" class="uk-input" maxlength="11" v-model="newPosts.contactPhone">
           <br>
-          <input type="radio" id="found" value="Found" v-model="newPosts.isFound" class="radio">
+          <input type="radio" id="found" value="Found" class="uk-radio" v-model="newPosts.isFound">
           <label for="found">Found</label>
 
-          <input type="radio" id="notFound" value="Not Found" checked v-model="newPosts.isFound" class="radio">
+          <input type="radio" id="notFound" value="Not Found" class="uk-radio" checked v-model="newPosts.isFound">
           <label for="notFound">Not Found</label>
           <br>
-          <span>Status: {{ newPosts.isFound }}</span>
-          <br>
           <label for="routeCoor">Coordinates: </label>
-          <input type="text" v-model="newPosts.lostItemLocation" disabled required>
-          <p id="routeCoor">Current Coordinates{{this.coordinates}}</p>
-
-
+          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" disabled required>
 
           <div id="map">
             <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
             </gmap-map>
-
-
           </div>
-          <input type="submit" value="Submit Post">
-          <button @click="addPost()" disabled>Submit Post</button>
+          <input type="submit" value="Submit Post" class="uk-button uk-button-primary uk-button-small">
         </form>
       </fieldset>
     </div>
@@ -194,27 +188,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 
-  h1,
-  h2 {
-    font-weight: normal;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
 
   #map {
     display: flex;
