@@ -37,6 +37,8 @@
               <label for="found">Found</label>
               <input type="radio" id="notFound" value="Not Found" checked v-model="usersPosts.item_info.isFound" class="radio">
               <label for="notFound">Not Found</label>
+              <input type="radio" id="returned" value="Returned" v-model="usersPosts.item_info.isFound" class="radio">
+              <label for="returned">Returned</label>
               <br>
               <span>Status: {{ usersPosts.item_info.isFound }}</span>
               <br>

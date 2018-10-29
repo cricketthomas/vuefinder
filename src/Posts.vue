@@ -6,11 +6,11 @@
     </div>
     <div v-else>
       <div>
-        <input type="text" v-model="search" uk-sticky="offset: 90; animation: uk-animation-slide-top" placeholder="search by item name"
+        <input type="text" v-model="search" uk-sticky="offset: 80; animation: uk-animation-slide-top" placeholder="search by item name"
           class="uk-form-width-large uk-input uk-align-center">
         <p>Vue chart kick here: Found: {{foundFilter}} Not found: {{notFoundFilter}} </p>
 
-        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['#666','#b00']" :data="[['Items Returned', foundFilter], ['Items Still Lost', notFoundFilter]]">
+        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['#666','#b00', 'cyan']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
         </pie-chart>
         <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center">
 
@@ -75,7 +75,7 @@
       };
     },
     firebase: {
-      usersData: usersRef,
+      usersData: usersRef
       //cancelCallback: function () {},
       // this is called once the data has been retrieved from firebase
       //readyCallback: function(error) {
@@ -156,7 +156,18 @@
         }
         console.log(notFoundArr);
         return notFoundArr.length;
-      }
+      },
+      returnedFilter() {
+        var returnedArr = [];
+        for (var key of Object.keys(this.usersData)) {
+          var postKeys = this.usersData[key].item_info;
+          if (postKeys["isFound"] == "Returned") {
+            returnedArr.push(postKeys["isFound"]);
+          }
+        }
+        console.log(returnedArr);
+        return returnedArr.length;
+      },
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {

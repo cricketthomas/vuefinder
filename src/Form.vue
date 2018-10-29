@@ -13,22 +13,22 @@
       <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center">
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
-          <label for="itemName">Item Name</label>
-          <input type="text" id="itemName" class="uk-input" placeholder="Post Title / Item name" v-model="newPosts.itemName"
+          <label for="itemName" class="uk-form-label">Item Name</label>
+          <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item name" v-model="newPosts.itemName"
             required>
           <br>
-          <label for="itemDescription">Item Description</label>
+          <label for="itemDescription" class="uk-form-label formLabel">Item Description</label>
           <textarea id="itemDescription" class="uk-textarea" placeholder="Please descirbe the item you lost." maxlength="250"
             v-model="newPosts.itemDescription">
         </textarea>
           <br>
-          <label for="itemDate">Date Lost</label>
+          <label for="itemDate" class="uk-form-label formLabel">Date Lost</label>
           <input type="date" id="itemDate" class="uk-input" v-model="newPosts.itemDate" required>
           <br>
-          <label for="contactEmail"> Contact Email: </label>
+          <label for="contactEmail" class="uk-form-label formLabel"> Contact Email: </label>
           <input type="email" id="contactEmail" class="uk-input" v-model="newPosts.contactEmail" required>
           <br>
-          <label for="tele"> Telephone: </label>
+          <label for="tele" class="uk-form-label formLabel"> Telephone: </label>
           <input type="tel" id="tel" class="uk-input" maxlength="11" v-model="newPosts.contactPhone">
           <br>
           <input type="radio" id="found" value="Found" class="uk-radio" v-model="newPosts.isFound">
@@ -37,10 +37,10 @@
           <input type="radio" id="notFound" value="Not Found" class="uk-radio" checked v-model="newPosts.isFound">
           <label for="notFound">Not Found</label>
           <br>
-          <label for="routeCoor">Coordinates: </label>
+          <label for="routeCoor" class="uk-form-label">Coordinates: </label>
           <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" disabled required>
 
-          <div id="map">
+          <div id="map" uk-tooltip="title: Drag Cursor to Location; pos: top-right">
             <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
             </gmap-map>
@@ -194,6 +194,10 @@
   #map {
     display: flex;
     justify-content: center;
+  }
+
+  .formLabel {
+    float: left;
   }
 
 </style>
