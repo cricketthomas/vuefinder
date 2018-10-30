@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
       <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
         <div class="uk-navbar-center">
-
           <ul class="uk-navbar-nav">
             <li v-show="!authUser">
               <router-link to="/login">Login In</router-link>
@@ -22,11 +20,7 @@
             <li v-show="authUser">
               <router-link to="/profile" uk-icon="users">&nbsp;Profile</router-link>
             </li>
-
-
             <li v-show="authUser">
-
-
               <a uk-icon="sign-out">&nbsp;User &nbsp;</a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -45,6 +39,7 @@
 
 
     <router-view></router-view>
+    <footer> Made with stress - 2018</footer>
   </div>
 </template>
 

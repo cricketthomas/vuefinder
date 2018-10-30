@@ -13,7 +13,7 @@
       <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center">
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
-          <label for="itemName" class="uk-form-label">Item Name</label>
+          <label for="itemName" class="uk-form-label formLabel">Item Name</label>
           <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item name" v-model="newPosts.itemName"
             required>
           <br>
@@ -38,7 +38,8 @@
           <label for="notFound">Not Found</label>
           <br>
           <label for="routeCoor" class="uk-form-label">Coordinates: </label>
-          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" disabled required>
+          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" placeholder="Drag the cursor on the map below"
+            required disabled>
 
           <div id="map" uk-tooltip="title: Drag Cursor to Location; pos: top-right">
             <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">

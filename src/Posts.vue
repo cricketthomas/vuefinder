@@ -6,23 +6,21 @@
     </div>
     <div v-else>
       <div>
-        <input type="text" v-model="search" uk-sticky="offset: 80; animation: uk-animation-slide-top" placeholder="search by item name"
-          class="uk-form-width-large uk-input uk-align-center">
+        <input type="text" v-model="search" uk-sticky="offset: 80; animation: uk-animation-slide-top; min-width: 1000px"
+          placeholder="search by item name" class="uk-form-width-large uk-width-expand uk-input uk-align-center">
         <p>Vue chart kick here: Found: {{foundFilter}} Not found: {{notFoundFilter}} </p>
 
         <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['#666','#b00', 'cyan']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
         </pie-chart>
-        <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center">
+        <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-animation-slide-top-medium">
 
-          <div class="uk-card uk-card-default uk-width-1-3@m uk-align-center">
+          <div class="uk-card uk-dark uk-card-small uk-card-secondary uk-width-1-2@m uk-align-center">
             <div class="uk-card-header">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                  <img class="uk-border-circle" width="40" height="40" src="./assets/logo.png">
-                </div>
                 <div class="uk-width-expand">
                   <h3 class="uk-card-title uk-margin-remove-bottom">{{post.item_info.itemName}}</h3>
                   <p class="uk-text-meta uk-margin-remove-top"><time>{{post.item_info.itemDate}}</time></p>
+                  <hr>
                 </div>
               </div>
             </div>
@@ -38,18 +36,19 @@
                 </p>
                 <p class="uk-text-meta">Updated: {{post.item_info.dateModified}}</p>
                 <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
-                <br>
               </div>
             </div>
             <div class="uk-card-footer">
+              <hr>
               <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
             </div>
           </div>
         </div>
-        <a class="uk-button uk-button-primary" href="#top" uk-scroll="duration: 150">Scroll Up</a>
 
       </div>
     </div>
+    <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
+
     <router-view></router-view>
   </div>
 </template>
@@ -167,7 +166,7 @@
         }
         console.log(returnedArr);
         return returnedArr.length;
-      },
+      }
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {
@@ -202,6 +201,12 @@
 
   .textLeft {
     text-align: left;
+  }
+
+  .toTop {
+    right: 1vw;
+    top: 95vh;
+    position: fixed;
   }
 
 </style>
