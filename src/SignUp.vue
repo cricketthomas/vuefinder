@@ -2,20 +2,26 @@
   <div>
     <div v-if="authUser">
       <h3>Signed in as: {{authUser.email}} </h3>
-      <button @click="signOut()">Sign Out</button>
+      <button class="uk-button uk-button-danger" @click="signOut()">Sign Out?</button>
     </div>
     <div v-else>
       <h1>Sign Up</h1>
-      <label>Email
-        <br>
-        <input type="email" placeholder="Email" v-model="email" required />
-      </label>
-      <br>
-      <label>Password <br>
-        <input type="password" placeholder="Password" v-model="password" required />
-      </label>
-      <br>
-      <button @click="register()">Create Account</button>
+      <h5>Join to post and view details</h5>
+      <form>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="email" placeholder="Email" v-model="email" required>
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input class="uk-input" type="password" placeholder="Password" v-model="password" required>
+          </div>
+        </div>
+      </form>
+      <button class="uk-button uk-button-primary" @click="register()">Create Account</button>
       <br>
     </div>
   </div>

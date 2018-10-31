@@ -10,7 +10,6 @@
             <li v-show="!authUser">
               <router-link to="/signup">Sign Up</router-link>
             </li>
-
             <li v-show="authUser">
               <router-link to="/form" uk-icon="copy">&nbsp;Form</router-link>
             </li>
@@ -37,10 +36,9 @@
     </div>
     <img src="./assets/logo.png">
 
-
     <router-view></router-view>
-    <footer> Made with stress - 2018</footer>
   </div>
+
 </template>
 
 <script>
@@ -82,26 +80,19 @@
 
 <style>
   #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
   }
 
-  h1,
-  h2 {
-    font-weight: normal;
+  html {
+    background: linear-gradient(to bottom, #ffffff 0%, #003366 258%);
+    background-size: 100% 100%;
+    padding-bottom: 25vh;
+
   }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
+  footer {
+    margin: auto;
   }
 
 </style>

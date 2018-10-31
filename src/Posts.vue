@@ -14,13 +14,12 @@
         </pie-chart>
         <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-animation-slide-top-medium">
 
-          <div class="uk-card uk-dark uk-card-small uk-card-secondary uk-width-1-2@m uk-align-center">
+          <div class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
             <div class="uk-card-header">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-width-expand">
                   <h3 class="uk-card-title uk-margin-remove-bottom">{{post.item_info.itemName}}</h3>
                   <p class="uk-text-meta uk-margin-remove-top"><time>{{post.item_info.itemDate}}</time></p>
-                  <hr>
                 </div>
               </div>
             </div>
@@ -39,8 +38,8 @@
               </div>
             </div>
             <div class="uk-card-footer">
-              <hr>
-              <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
+              <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Public
+                Details</router-link>
             </div>
           </div>
         </div>
@@ -149,7 +148,7 @@
         var notFoundArr = [];
         for (var key of Object.keys(this.usersData)) {
           var postKeys = this.usersData[key].item_info;
-          if (postKeys["isFound"] == "Not Found") {
+          if (postKeys["isFound"] == "Lost") {
             notFoundArr.push(postKeys["isFound"]);
           }
         }

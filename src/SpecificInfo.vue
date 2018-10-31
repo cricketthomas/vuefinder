@@ -1,12 +1,22 @@
 <template>
-  <div>
+  <div class="canvas uk-animation-slide-top-medium">
     <div>
-      <h2>testing for any data passed in:</h2>
-      <br>
-      <p>{{ info.item_info}}</p>
+      <h2>Post Details</h2>
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-3@m uk-align-center">
+        <h3 class="uk-card-title">{{info.item_info.itemName}}</h3>
+        <p class="textLeft">
+          <strong>Description:</strong> &nbsp;{{info.item_info.itemDescription}}
+          <br> <strong>Lost on:</strong> &nbsp;{{info.item_info.itemDate}}
+          <br> <strong>Posted on:</strong> &nbsp;<time>{{info.item_info.dateModified}}</time>
+          <br>
+          <strong>Contact:</strong>
+          &nbsp; {{info.item_info.contactEmail}} |
+          &nbsp; {{info.item_info.contactPhone}}
+        </p>
 
+      </div>
       <div id='map'>
-        <gmap-map :center="cleaningCoordinates" :zoom="15" style="width: 500px; height: 300px" map-type-id="roadmap">
+        <gmap-map :center="cleaningCoordinates" :zoom="15" style="width: 550px; height: 300px" map-type-id="roadmap">
           <gmap-marker :position="cleaningCoordinates" />
         </gmap-map>
       </div>
@@ -69,6 +79,37 @@
   #map {
     display: flex;
     justify-content: center;
+  }
+
+
+
+  .textLeft {
+    text-align: left;
+  }
+
+
+
+
+  @media screen and (max-width: 900px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 205px;
+    }
+  }
+
+  @media screen and (max-width: 1600px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 205px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 25vh;
+      overflow: hidden;
+    }
   }
 
 </style>

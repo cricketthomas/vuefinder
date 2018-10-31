@@ -1,30 +1,27 @@
 <template>
-  <div>
-    <div v-if="!authUser">
+  <div class="loginCanvas">
+    <div v-show="!authUser">
       <h1>Login</h1>
-      <label>Email
-        <div id="message">
+      <div id="message"></div>
+      <form>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="email" placeholder="Email" v-model="email" required>
+          </div>
         </div>
-        <br>
-        <input type="email" placeholder="Email" class="uk-form-width-medium uk-input uk-align-center" v-model="email"
-          required />
-      </label>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input class="uk-input" type="password" placeholder="Password" v-model="password" required>
+          </div>
+        </div>
+      </form>
+      <button class="uk-button uk-button-primary" @click="signIn()">Log in</button>
       <br>
-      <label>Password <br>
-        <input type="password" placeholder="Password" class="uk-form-width-medium uk-input uk-align-center" v-model="password"
-          required />
-      </label>
       <br>
-      <button @click="signIn()">Log in</button>
-      <br>
-      <button @click="resetPassword()">Forgot Password?</button>
+      <button class="uk-button-secondary" @click="resetPassword()">Forgot Password?</button>
     </div>
-    <div v-else>
-      <button @click="signOut()" disabled>Log Out</button>
-    </div>
-
-
-
   </div>
 </template>
 <script>
@@ -92,3 +89,11 @@
   };
 
 </script>
+
+<style>
+  .loginCanvas {
+    padding-bottom: 25vh;
+
+  }
+
+</style>

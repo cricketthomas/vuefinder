@@ -14,12 +14,12 @@
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
           <label for="itemName" class="uk-form-label formLabel">Item Name</label>
-          <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item name" v-model="newPosts.itemName"
+          <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item Name" v-model="newPosts.itemName"
             required>
           <br>
           <label for="itemDescription" class="uk-form-label formLabel">Item Description</label>
-          <textarea id="itemDescription" class="uk-textarea" placeholder="Please descirbe the item you lost." maxlength="250"
-            v-model="newPosts.itemDescription">
+          <textarea id="itemDescription" class="uk-textarea" placeholder="Please descirbe the item you lost or found"
+            maxlength="250" v-model="newPosts.itemDescription">
         </textarea>
           <br>
           <label for="itemDate" class="uk-form-label formLabel">Date Lost</label>
@@ -32,10 +32,10 @@
           <input type="tel" id="tel" class="uk-input" maxlength="11" v-model="newPosts.contactPhone">
           <br>
           <input type="radio" id="found" value="Found" class="uk-radio" v-model="newPosts.isFound">
-          <label for="found">Found</label>
+          <label for="found">Found Item</label>
 
-          <input type="radio" id="notFound" value="Not Found" class="uk-radio" checked v-model="newPosts.isFound">
-          <label for="notFound">Not Found</label>
+          <input type="radio" id="lost" value="Lost" class="uk-radio" checked v-model="newPosts.isFound">
+          <label for="lost">Lost Item</label>
           <br>
           <label for="routeCoor" class="uk-form-label">Coordinates: </label>
           <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" placeholder="Drag the cursor on the map below"
@@ -46,7 +46,7 @@
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
             </gmap-map>
           </div>
-          <input type="submit" value="Submit Post" class="uk-button uk-button-primary uk-button-small">
+          <input type="submit" value="Submit Post" class="uk-button uk-button-secondary uk-button-small submitButton">
         </form>
       </fieldset>
     </div>
@@ -103,7 +103,7 @@
           itemDate: '',
           contactPhone: '',
           contactEmail: '',
-          isFound: 'Not Found',
+          isFound: 'Lost',
           dateModified: Date(document.lastModified),
           lostItemLocation: this.routeCoor,
           //}
@@ -199,6 +199,10 @@
 
   .formLabel {
     float: left;
+  }
+
+  .submitButton {
+    margin-top: 10px;
   }
 
 </style>
