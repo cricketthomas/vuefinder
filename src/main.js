@@ -5,7 +5,7 @@ import Login from './Login.vue';
 import SignUp from './SignUp.vue';
 import Form from './Form.vue';
 import Posts from './Posts.vue';
-import Information from './Information.vue';
+import Errors from './Errors.vue';
 import Profile from './Profile.vue';
 import SpecificInfo from './SpecificInfo.vue';
 import firebase from 'firebase';
@@ -71,16 +71,13 @@ const routes = [{
 
   },
   {
-    name: 'information',
-    path: '/information/:allInfo',
-    component: Information,
-    meta: {
-      requiresAuth: true
-    }
+    name: 'errors',
+    path: '*',
+    component: Errors,
   },
   {
     name: 'profile',
-    path: '/profile/',
+    path: '/profile',
     component: Profile,
     meta: {
       requiresAuth: true
@@ -115,7 +112,7 @@ new Vue({
     SignUp,
     Form,
     Posts,
-    Information,
+    Errors,
     SpecificInfo,
     Profile
   },

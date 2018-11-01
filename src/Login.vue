@@ -17,10 +17,11 @@
           </div>
         </div>
       </form>
-      <button class="uk-button uk-button-primary" @click="signIn()">Log in</button>
+      <button class="uk-button uk-button-primary" @click="signIn();">Log in</button>
       <br>
       <br>
-      <button class="uk-button-secondary" @click="resetPassword()">Forgot Password?</button>
+      <button class=" uk-button-secondary" @click="resetPassword()">Forgot
+        Password?</button>
     </div>
   </div>
 </template>
@@ -28,7 +29,8 @@
   import firebase, {
     functions
   } from "firebase";
-
+  import App from './App.vue';
+  import Login from './Login.vue';
   export default {
     name: "login",
     data() {
@@ -36,7 +38,7 @@
         email: "",
         password: "",
         authUser: null,
-        //errorAlert: false,
+        backgroundImg: "./assets/logo.png",
       };
     },
     methods: {
@@ -45,7 +47,6 @@
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .catch(function (error) {
-            console.log("logged in");
             var errorCode = error.code;
             var errorMessage = error.message;
             var errorAlert = true
@@ -69,11 +70,12 @@
       },
       resetPassword() {
         var auth = firebase.auth();
-        var emailAddress = prompt("Enter your email");
+        var emailAddress = prompt("Enter your email:");
         auth
           .sendPasswordResetEmail(emailAddress)
           .then(function () {
             // Email sent.
+            alert("An Email was sent to you, if your record was found")
           })
           .catch(function (error) {
             alert(error);
@@ -84,6 +86,7 @@
     created() {
       firebase.auth().onAuthStateChanged(user => {
         this.authUser = user;
+        this.$router.push("/posts");
       });
     }
   };
@@ -92,8 +95,8 @@
 
 <style>
   .loginCanvas {
-    padding-bottom: 25vh;
-
+    margin-top: 10vh;
+    overflow: hidden;
   }
 
 </style>

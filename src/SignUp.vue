@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="loginCanvas">
     <div v-if="authUser">
       <h3>Signed in as: {{authUser.email}} </h3>
       <button class="uk-button uk-button-danger" @click="signOut()">Sign Out?</button>
@@ -65,3 +65,10 @@
   }
 
 </script>
+<style>
+  .loginCanvas {
+    margin-top: 10vh;
+    overflow: hidden;
+  }
+
+</style>

@@ -25,18 +25,16 @@
                 <ul class="uk-nav uk-navbar-dropdown-nav">
                   <button class="uk-button uk-button-danger" @click="signOut()">log out</button>
                 </ul>
-
               </div>
             </li>
           </ul>
-
         </div>
-
       </nav>
-    </div>
-    <img src="./assets/logo.png">
 
+    </div>
     <router-view></router-view>
+    <footer></footer>
+
   </div>
 
 </template>
@@ -44,29 +42,28 @@
 <script>
   import firebase from "firebase";
   import "./firebase";
-
+  import Posts from "./Posts.vue";
   import SignUp from "./SignUp.vue";
 
   export default {
     name: "app",
     data() {
       return {
-        msg: "App",
-        authUser: null
+        authUser: null,
+        color: "linear-gradient(to bottom, #ffffff 0%, #003366 258%)"
       };
     },
     methods: {
       //account methods
       signIn() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-        console.log("logged in");
+        console.log("logged in from app");
+
       },
       signOut() {
         firebase.auth().signOut();
         console.log(
-          "logged out " + this.authUser.email + " UID: " + this.authUser.uid
-        );
-        this.$router.push("/");
+          "logged out " + this.authUser.email);
       }
     },
     created() {
@@ -81,13 +78,12 @@
 <style>
   #app {
     text-align: center;
-    color: #2c3e50;
+    height: 100%;
   }
 
   html {
-    background: linear-gradient(to bottom, #ffffff 0%, #003366 258%);
-    background-size: 100% 100%;
-    padding-bottom: 25vh;
+    height: 100%;
+    margin: auto;
 
   }
 

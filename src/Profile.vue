@@ -8,14 +8,13 @@
         <div v-show="authUser.uid == usersPosts.item_info.userId">
           <div v-if="!usersPosts.edit">
             <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center uk-animation-slide-top-medium">
-              <div class="uk-card-badge uk-label">{{usersPosts.item_info.isFound}}</div>
+              <div class="uk-card-badge uk-label" v-bind:class="[usersPosts.item_info.isFound === 'Lost' ? 'uk-label-danger' : usersPosts.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{usersPosts.item_info.isFound}}</div>
               <h3 class="uk-card-title">{{usersPosts.item_info.itemName}}</h3>
               <p>Date:{{usersPosts.item_info.itemDate}} </p>
               <p>Item Description:{{usersPosts.item_info.itemDescription}}</p>
               <button @click="setEdit(usersPosts['.key'])">Edit</button>
             </div>
           </div>
-
           <div v-else>
             <fieldset>
               <h3>Enter your items details below:</h3>
@@ -36,8 +35,8 @@
               <br>
               <input type="radio" id="found" value="Found" v-model="usersPosts.item_info.isFound" class="radio">
               <label for="found">Found</label>
-              <input type="radio" id="notFound" value="Not Found" checked v-model="usersPosts.item_info.isFound" class="radio">
-              <label for="notFound">Not Found</label>
+              <input type="radio" id="lost" value="Lost" checked v-model="usersPosts.item_info.isFound" class="radio">
+              <label for="lost">Lost</label>
               <input type="radio" id="returned" value="Returned" v-model="usersPosts.item_info.isFound" class="radio">
               <label for="returned">Returned</label>
               <br>
@@ -45,15 +44,11 @@
               <br>
               <label for="routeCoor">Coordinates: </label>
               <input type="text" id="routeCoor" v-model="usersPosts.item_info.lostItemLocation" />
-
-              
         <div id="map">
           <gmap-map :center="JSON.parse(usersPosts.item_info.lostItemLocation)" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
             <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="true" @drag="ItemCoordinates"/>
           </gmap-map>
         </div>
-
-
               <button @click="saveEdit(usersPosts)">Save</button>
               <button @click="cancelEdit(usersPosts['.key'])">Cancel</button>
               <button @click="removePost(usersPosts)">Remove?</button>
@@ -77,6 +72,7 @@ export default {
   name: "profile",
   data() {
     return {
+      dangerStyle:  "uk-label-danger",
       center: {
         lat: 10.0,
         lng: 10.0

@@ -1,25 +1,24 @@
 <template id="top">
-  <div>
+  <div id="postsCanvas">
     <div v-if="!authUser">
       <br>
-      <h2> Please Sign in</h2>
+      <h2>Please Sign in</h2>
     </div>
     <div v-else>
       <div>
         <input type="text" v-model="search" uk-sticky="offset: 80; animation: uk-animation-slide-top; min-width: 1000px"
-          placeholder="search by item name" class="uk-form-width-large uk-width-expand uk-input uk-align-center">
-        <p>Vue chart kick here: Found: {{foundFilter}} Not found: {{notFoundFilter}} </p>
-
-        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['#666','#b00', 'cyan']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
+          placeholder="search everything" class="uk-form-width-large uk-width-expand uk-input uk-align-center searchbar">
+        <h4>Summary</h4>
+        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['orange','red', 'blue']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
         </pie-chart>
         <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-animation-slide-top-medium">
-
           <div class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
             <div class="uk-card-header">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-width-expand">
                   <h3 class="uk-card-title uk-margin-remove-bottom">{{post.item_info.itemName}}</h3>
                   <p class="uk-text-meta uk-margin-remove-top"><time>{{post.item_info.itemDate}}</time></p>
+                  <div class="uk-card-badge uk-label" v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}</div>
                 </div>
               </div>
             </div>
@@ -43,15 +42,15 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
-
     <router-view></router-view>
   </div>
 </template>
 <script>
+  import App from './App.vue';
+
   import "./firebase";
   import firebase, {
     functions
@@ -179,7 +178,7 @@
 <style>
   .pieChart {
     animation-name: spin;
-    animation-duration: 2000ms;
+    animation-duration: 1500ms;
     animation-iteration-count: 1;
     animation-timing-function: infinite;
     /* transform: rotate(3deg); */
@@ -206,6 +205,10 @@
     right: 1vw;
     top: 95vh;
     position: fixed;
+  }
+
+  html {
+    background-repeat: repeat;
   }
 
 </style>
