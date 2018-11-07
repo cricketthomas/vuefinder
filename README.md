@@ -1,6 +1,6 @@
 # vue-finder
 
-> A Vue.js project
+> A Vue.js project using firebase to allow students at the univeristy of maryland to mark locations using google maps, and post information about items they may have lost or found around campus and where they may have left them. The main need for this site is that UMDPD, although effective, sometimes has a delay of when they can get to each building to collect the found items and enter them into their own database/website. With that, I made a simple app where people can post what they found or lost, and where they left it. 
 
 ## Laundry list:
 ### Not in order to be created. 
