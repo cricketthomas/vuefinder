@@ -22,7 +22,7 @@
 
 ## Some screenshots of it:
 not quite done, but just wanted to show you if youre curious. 
-<img src="..screeshots/login.png" width="48">
+<img src="screeshots/login.png" width="48">
 ## Build Setup
 
 ``` bash
