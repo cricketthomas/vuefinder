@@ -22,7 +22,12 @@
 
 ## Some screenshots of it:
 not quite done, but just wanted to show you if youre curious. 
-<img src="./screenshots/login.png" width="48">
+<img src="./screenshots/login.png" width="480">
+<img src="./screenshots/loginvalid.png" width="480">
+<img src="./screenshots/allpoststop.png" width="480">
+<img src="./screenshots/allposts.png" width="480">
+<img src="./screenshots/details.png" width="480">
+<img src="./screenshots/userposts.png" width="480">
 ## Build Setup
 
 ``` bash
