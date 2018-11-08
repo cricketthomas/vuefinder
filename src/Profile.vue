@@ -16,42 +16,41 @@
             </div>
           </div>
           <div v-else>
-            <fieldset>
+            <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center fieldsetBg">
               <h3>Enter your items details below:</h3>
-              <label for="itemName">Item Name</label>
-              <input type="text" id="itemName" placeholder="Post Title / Item name" v-model="usersPosts.item_info.itemName">
+              <label for="itemName" class="uk-form-label formLabel">Item Name</label>
+              <input type="text" id="itemName" placeholder="Post Title / Item name" class="uk-input" v-model="usersPosts.item_info.itemName">
               <br>
-              <label for="itemDescription">Item Description</label>
-              <textarea id="itemDescription" placeholder="Please descirbe the item you lost." v-model="usersPosts.item_info.itemDescription" />
+              <label for="itemDescription" class="uk-form-label formLabel">Item Description</label>
+              <textarea id="itemDescription" placeholder="Please descirbe the item you lost or found" maxlength="250"
+                class="uk-input" v-model="usersPosts.item_info.itemDescription" />
               <br>
-              <label for="itemDate">Date Lost</label>
-              <input type="date" id="itemDate" v-model="usersPosts.item_info.itemDate">
+              <label for="itemDate" class="uk-form-label formLabel">Date Lost</label>
+              <input type="date" id="itemDate" class="uk-input" v-model="usersPosts.item_info.itemDate">
               <br>
-              <label for="contactEmail"> Contact Email: </label>
-              <input type="email" id="contactEmail" v-model="usersPosts.item_info.contactEmail">
+              <label for="contactEmail" class="uk-form-label formLabel"> Contact Email: </label>
+              <input type="email" id="contactEmail" class="uk-input" v-model="usersPosts.item_info.contactEmail">
               <br>
-              <label for="tele"> Telephone: </label>
-              <input type="tel" id="tel" maxlength="11" v-model="usersPosts.item_info.contactPhone">
+              <label for="tele" class="uk-form-label formLabel"> Telephone: </label>
+              <input type="tel" id="tel" maxlength="11" class="uk-input" v-model="usersPosts.item_info.contactPhone">
               <br>
-              <input type="radio" id="found" value="Found" v-model="usersPosts.item_info.isFound" class="radio">
+              <input type="radio" id="found" value="Found" v-model="usersPosts.item_info.isFound" class="uk-radio">
               <label for="found">Found</label>
-              <input type="radio" id="lost" value="Lost" checked v-model="usersPosts.item_info.isFound" class="radio">
+              <input type="radio" id="lost" value="Lost" checked v-model="usersPosts.item_info.isFound" class="uk-radio">
               <label for="lost">Lost</label>
-              <input type="radio" id="returned" value="Returned" v-model="usersPosts.item_info.isFound" class="radio">
+              <input type="radio" id="returned" value="Returned" v-model="usersPosts.item_info.isFound" class="uk-radio">
               <label for="returned">Returned</label>
               <br>
-              <span>Status: {{ usersPosts.item_info.isFound }}</span>
-              <br>
-              <label for="routeCoor">Coordinates: </label>
-              <input type="text" id="routeCoor" v-model="usersPosts.item_info.lostItemLocation" />
-        <div id="map">
-          <gmap-map :center="JSON.parse(usersPosts.item_info.lostItemLocation)" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
-            <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="true" @drag="ItemCoordinates"/>
-          </gmap-map>
-        </div>
-              <button @click="saveEdit(usersPosts)">Save</button>
-              <button @click="cancelEdit(usersPosts['.key'])">Cancel</button>
-              <button @click="removePost(usersPosts)">Remove?</button>
+              <label for="routeCoor" class="uk-form-label formLabel">Coordinates: </label>
+              <input type="text" id="routeCoor" class="uk-input" v-model="usersPosts.item_info.lostItemLocation" />
+              <div id="map">
+                <gmap-map :center="JSON.parse(usersPosts.item_info.lostItemLocation)" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
+                  <gmap-marker :position="JSON.parse(usersPosts.item_info.lostItemLocation)" :draggable="true" @drag="ItemCoordinates"/>
+                </gmap-map>
+              </div>
+              <button @click="saveEdit(usersPosts)" class="uk-button uk-button-default saveButton">Save</button>
+              <button @click="cancelEdit(usersPosts['.key'])" class="uk-button uk-button-default cancelButton">Cancel</button>
+              <button @click="removePost(usersPosts)" class=" uk-button uk-button-default uk-button-danger">Remove</button>
             </fieldset>
           </div>
         </div>
@@ -186,6 +185,30 @@ export default {
   justify-content: center;
 }
  
- 
+  .formLabel {
+    float: left;
+  }
+.saveButton{
+  background-color: green;
+  color: white;
+}
+.saveButton:hover{
+  background-color: rgb(42, 149, 42);
+    color: white;
 
+}
+.cancelButton{
+  background-color: goldenrod;
+  color: white;
+}
+.cancelButton:hover{
+  background-color: rgb(241, 180, 11);
+    color: white;
+
+}
+.fieldsetBg{
+  background-color: whitesmoke;
+  padding: 2em;
+  border-radius: .5em;
+}
 </style>
