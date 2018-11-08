@@ -19,6 +19,10 @@
 # Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
 
+
+## Some screenshots of it:
+not quite done, but just wanted to show you if youre curious. 
+<img src="..screeshots/login.png" width="48">
 ## Build Setup
 
 ``` bash
