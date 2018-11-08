@@ -7,6 +7,7 @@
     <div v-else>
       <h1>Sign Up</h1>
       <h5>Join to post and view details</h5>
+      <div id="message"></div>
       <form>
         <div class="uk-margin">
           <div class="uk-inline">
@@ -44,7 +45,11 @@
           console.log('User Created')
           var errorCode = error.code;
           var errorMessage = error.message;
-          alert(errorMessage);
+          var errorAlert = true
+          var element = document.getElementById('message').innerHTML =
+            '<div class="uk-alert-danger uk-align-center" uk-alert style="width: 30vw; justi"> <a class="uk-alert-close" uk-close></a>' +
+            errorMessage +
+            '</div>'
         });
       },
       signOut() {

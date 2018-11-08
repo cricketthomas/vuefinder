@@ -12,7 +12,7 @@
               <h3 class="uk-card-title">{{usersPosts.item_info.itemName}}</h3>
               <p>Date:{{usersPosts.item_info.itemDate}} </p>
               <p>Item Description:{{usersPosts.item_info.itemDescription}}</p>
-              <button @click="setEdit(usersPosts['.key'])">Edit</button>
+              <button @click="setEdit(usersPosts['.key'])" class="uk-button uk-button-default">Edit</button>
             </div>
           </div>
           <div v-else>
@@ -50,7 +50,7 @@
               </div>
               <button @click="saveEdit(usersPosts)" class="uk-button uk-button-default saveButton">Save</button>
               <button @click="cancelEdit(usersPosts['.key'])" class="uk-button uk-button-default cancelButton">Cancel</button>
-              <button @click="removePost(usersPosts)" class=" uk-button uk-button-default uk-button-danger">Remove</button>
+              <button @click="removePost(usersPosts)" class="uk-button uk-button-default uk-button-danger">Remove</button>
             </fieldset>
           </div>
         </div>

@@ -37,8 +37,7 @@
               </div>
             </div>
             <div class="uk-card-footer">
-              <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Public
-                Details</router-link>
+              <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
             </div>
           </div>
         </div>
@@ -207,8 +206,8 @@
     position: fixed;
   }
 
-  html {
-    background-repeat: repeat;
+  .searchbar {
+    text-align: center
   }
 
 </style>
