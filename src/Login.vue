@@ -95,8 +95,12 @@
 
 <style>
   .loginCanvas {
-    margin-top: 10vh;
+    margin-top: 5vh;
     overflow: hidden;
+  }
+
+  .titleMsg {
+    color: white
   }
 
 </style>

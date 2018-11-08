@@ -30,14 +30,13 @@
           </ul>
         </div>
       </nav>
-
     </div>
+    <title-msg class="titleMsg" v-show="!authUser" />
     <router-view></router-view>
     <footer></footer>
-
   </div>
-
 </template>
+
 
 <script>
   import firebase from "firebase";
@@ -79,12 +78,6 @@
   #app {
     text-align: center;
     height: 100%;
-  }
-
-  html {
-    height: 100%;
-    margin: auto;
-
   }
 
   footer {

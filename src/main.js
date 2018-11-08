@@ -20,6 +20,21 @@ Vue.use(VueChartkick, {
   adapter: Chart
 })
 
+Vue.component('title-msg', {
+  template: `
+  <div class="uk-section uk-section-xsmall uk-section-secondary uk-width-1 uk-align-center">
+    <div class="uk-container">
+    <h3> <u> <i>Welcome to ItemFinder</i></u></h3>
+      <div class="uk-grid-match" uk-grid>
+        <h4 class="uk-align-center">This is an application to help you find items you may have lost, <br>
+          or to post items that you found on campus and
+          where you left them.</h4>
+      </div>
+    </div>
+  </div>
+`
+
+})
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCJGNkLNfIzR204B2uB2R2YN4wwPRJcpVA',
@@ -71,17 +86,16 @@ const routes = [{
 
   },
   {
-    name: 'errors',
-    path: '*',
-    component: Errors,
-  },
-  {
     name: 'profile',
     path: '/profile',
     component: Profile,
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '*',
+    component: Errors,
   }
 ]
 

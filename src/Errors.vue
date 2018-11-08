@@ -1,10 +1,9 @@
 <template>
   <div>
-    <h1 class="error">Nothing here..</h1>
+    <h1 class="error">nothing here..</h1>
     <article></article>
     <router-view></router-view>
   </div>
-
 </template>
 <script>
   import Vue from 'vue';
@@ -34,7 +33,7 @@
   .error {
     display: flex;
     justify-content: center;
-    padding-top: 10em;
+    padding-top: 2em;
   }
 
 </style>
