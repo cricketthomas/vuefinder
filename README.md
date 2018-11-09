@@ -11,10 +11,13 @@
 5. ~~Unique post url~~
 6. ~~**Security rules matter alot for this**~~ Added user based security rules
 7. [call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)
-8. Polish Pages data output and search functionality. 
-9. Data Validation.
-10. Style
+8. ~~Polish Pages data output and search functionality.~~
+9. ~~Data Validation.~~
+10. ~~Style~~
+11. Clean up code, group in folders.
 12. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
+13. Publish to Github project pages. 
+
 
 # Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
