@@ -10,7 +10,7 @@
 4. ~~Add found/not found so people can mark items them found~~ **Style binding for them and hide them if they are found.** 
 5. ~~Unique post url~~
 6. ~~**Security rules matter alot for this**~~ Added user based security rules
-7. [call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)
+7. ~~[call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)~~
 8. ~~Polish Pages data output and search functionality.~~
 9. ~~Data Validation.~~
 10. ~~Style~~

@@ -5,7 +5,7 @@ import Login from './Login.vue';
 import SignUp from './SignUp.vue';
 import Form from './Form.vue';
 import Posts from './Posts.vue';
-import Errors from './Errors.vue';
+import PageNotFound from './PageNotFound.vue';
 import Profile from './Profile.vue';
 import SpecificInfo from './SpecificInfo.vue';
 import firebase from 'firebase';
@@ -33,8 +33,18 @@ Vue.component('title-msg', {
     </div>
   </div>
 `
-
 })
+
+Vue.component('page404', {
+  template: `
+  <div>
+  <h1 class="error">nothing here..
+  </h1>
+  <router-view></router-view>
+</div>
+`
+})
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCJGNkLNfIzR204B2uB2R2YN4wwPRJcpVA',
@@ -56,8 +66,12 @@ const routes = [{
     component: SignUp
   },
   {
+    name: 'PageNotFound',
+    path: '*',
+    component: PageNotFound
+  },
+  {
     name: "specificinfo",
-
     path: '/specificinfo/:postkey',
     component: SpecificInfo,
     props: true
@@ -92,10 +106,6 @@ const routes = [{
     meta: {
       requiresAuth: true
     }
-  },
-  {
-    path: '*',
-    component: Errors,
   }
 ]
 
@@ -126,7 +136,7 @@ new Vue({
     SignUp,
     Form,
     Posts,
-    Errors,
+    PageNotFound,
     SpecificInfo,
     Profile
   },

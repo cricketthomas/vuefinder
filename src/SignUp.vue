@@ -6,7 +6,7 @@
     </div>
     <div v-else>
       <h1>Sign Up</h1>
-      <h5>Join to post and view details</h5>
+      <h5>Join to post and view details!</h5>
       <div id="message"></div>
       <form>
         <div class="uk-margin">
@@ -28,52 +28,54 @@
   </div>
 </template>
 <script>
-  import firebase from 'firebase'
-
-  export default {
-    name: 'signup',
-    data() {
-      return {
-        email: '',
-        password: '',
-        authUser: null
-      }
-    },
-    methods: {
-      register() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function (error) {
-          console.log('User Created')
+import firebase from "firebase";
+export default {
+  name: "signup",
+  data() {
+    return {
+      email: "",
+      password: "",
+      authUser: null
+    };
+  },
+  methods: {
+    register() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .catch(function(error) {
+          console.log("User Created");
           var errorCode = error.code;
           var errorMessage = error.message;
-          var errorAlert = true
-          var element = document.getElementById('message').innerHTML =
+          var errorAlert = true;
+          var element = (document.getElementById("message").innerHTML =
             '<div class="uk-alert-danger uk-align-center" uk-alert style="width: 30vw; justi"> <a class="uk-alert-close" uk-close></a>' +
             errorMessage +
-            '</div>'
+            "</div>");
         });
-      },
-      signOut() {
-        firebase.auth().signOut().then(function () {
-          console.log('logged out' + this.authUser.email)
-        }).catch(function (error) {
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
+          console.log("logged out" + this.authUser.email);
+        })
+        .catch(function(error) {
           // An error happened.
         });
-      }
-    },
-    created() {
-      firebase.auth().onAuthStateChanged(user => {
-        this.authUser = user
-      })
-
     }
-
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.authUser = user;
+    });
   }
-
+};
 </script>
 <style>
-  .loginCanvas {
-    margin-top: 10vh;
-    overflow: hidden;
-  }
-
+.loginCanvas {
+  margin-top: 10vh;
+  overflow: hidden;
+}
 </style>
