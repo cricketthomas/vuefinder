@@ -11,8 +11,8 @@
         <h4>Summary</h4>
         <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['orange','red', 'blue']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
         </pie-chart>
-        <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-animation-slide-top-medium">
-          <div class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
+        <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium">
+          <div v-show="post.item_info.isFound === 'Lost' || post.item_info.isFound === 'Found'" class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
             <div class="uk-card-header">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-width-expand">

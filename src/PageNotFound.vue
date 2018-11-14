@@ -16,7 +16,7 @@
           <div class="uk-cover-container">
             <img src="src\assets\sliders\keys.jpg" alt="keys" uk-cover>
             <div class="uk-position-center uk-panel">
-              <h2>2</h2>
+              <h2>Post a "Found" post and help someone get their keys back.</h2>
             </div>
           </div>
         </li>
@@ -24,7 +24,7 @@
           <div class="uk-cover-container">
             <img src="src\assets\sliders\stress.jpg" alt="stress" uk-cover>
             <div class="uk-position-center uk-panel">
-              <h2>3</h2>
+              <h2>Don't Stress! Post your lost item and share it!</h2>
             </div>
           </div>
         </li>
@@ -32,7 +32,7 @@
           <div class="uk-cover-container">
             <img src="src\assets\sliders\lostposter.jpg" alt="lostposter" uk-cover>
             <div class="uk-position-center uk-panel">
-              <h2>4</h2>
+              <h2>Share your posts, get the word out!</h2>
             </div>
           </div>
         </li>
@@ -40,7 +40,7 @@
           <div class="uk-cover-container">
             <img src="src\assets\sliders\phone.jpg" alt="phone" uk-cover>
             <div class="uk-position-center uk-panel">
-              <h2>5</h2>
+              <h2>You can drag the marquee around to a location you lost/found the item.</h2>
             </div>
           </div>
         </li>

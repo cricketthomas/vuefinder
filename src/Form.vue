@@ -10,7 +10,7 @@
 
         </ul>
       </div>
-      <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center">
+      <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center myForm">
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
           <label for="itemName" class="uk-form-label formLabel">Item Name</label>
@@ -203,6 +203,21 @@
 
   .submitButton {
     margin-top: 10px;
+  }
+
+  .myForm {
+    background-color: whitesmoke;
+    padding: 2em;
+    border-radius: .5em;
+  }
+
+  @media screen and (max-width: 700px) {
+    .myForm {
+      background-color: whitesmoke;
+      padding: .5em;
+      margin: .5em;
+      border-radius: .5em;
+    }
   }
 
 </style>

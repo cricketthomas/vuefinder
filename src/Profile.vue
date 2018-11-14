@@ -124,13 +124,8 @@ export default {
         isFound: post.item_info.isFound,
         dateModified: Date(document.lastModified),
         lostItemLocation: this.coordinatesNull
-      },
-       
-        
-         
-        })
-
-        
+      },      
+        })      
       },
 
     removePost(user) {
@@ -153,8 +148,7 @@ export default {
       console.log(JSON.stringify(this.coordinates.lng));
       var routeCoor = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
     },
-    
-  },
+      },
 
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -165,17 +159,13 @@ export default {
       cleaningCoordinates() {
         var parsedLocation = JSON.parse(this.usersPosts.item_info.lostItemLocation)
         return parsedLocation
-
       },
       coordinatesNull(){
         if(this.coordinates === null){
           return JSON.stringify(this.mapLocation) //mapLocation
         }
           return JSON.stringify(this.coordinates)
-        
       }
-
-      
     }
 };
 </script>
@@ -211,4 +201,11 @@ export default {
   padding: 2em;
   border-radius: .5em;
 }
+ @media screen and (max-width: 700px) {
+  .fieldsetBg {
+  background-color: whitesmoke;
+  padding: .5em;
+  border-radius: .5em;
+}
+  }
 </style>
