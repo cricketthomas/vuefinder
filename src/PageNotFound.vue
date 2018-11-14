@@ -1,7 +1,5 @@
 <template>
-
   <div>
-    <title-msg class="titleMsg" />
     <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="center: true">
       <ul class="uk-slider-items uk-grid uk-grid-match" uk-height-viewport="offset-top: true">
         <li class="uk-width-3-4">
