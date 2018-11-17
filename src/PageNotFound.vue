@@ -52,6 +52,7 @@
 </template>
 <script>
   import Vue from 'vue';
+  import App from './App'
   import './firebase';
   import firebase, {
     functions
