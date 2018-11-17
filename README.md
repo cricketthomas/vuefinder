@@ -14,9 +14,8 @@
 8. ~~Polish Pages data output and search functionality.~~
 9. ~~Data Validation.~~
 10. ~~Style~~
-11. Clean up code, group in folders.
-12. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
-13. Publish to Github project pages. 
+11. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
+12. Publish to Github project pages. 
 
 
 # Future Plans:
