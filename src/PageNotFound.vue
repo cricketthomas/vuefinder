@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-error v-show="authUser !== null"/>
+    <page-error v-show="authUser !== null" />
     <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="center: true">
       <ul class="uk-slider-items uk-grid uk-grid-match" uk-height-viewport="offset-top: true">
         <li class="uk-width-3-4">
@@ -61,7 +61,9 @@
   export default {
     name: 'PageNotFound',
     data() {
-      return {}
+      return {
+        authUser: null,
+      }
 
     },
     created() {
