@@ -54,7 +54,6 @@
               '<div class="uk-alert-danger uk-align-center" uk-alert style="width: 30vw; justi"> <a class="uk-alert-close" uk-close></a>' +
               errorMessage +
               '</div>'
-            //alert(errorMessage);
           });
       },
       signOut() {
@@ -81,7 +80,6 @@
             alert(error);
           });
       },
-
     },
     created() {
       firebase.auth().onAuthStateChanged(user => {

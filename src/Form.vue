@@ -1,13 +1,11 @@
 <template>
   <div>
-
     <div>
       <div>
         <ul class="errors" v-show="false">
           <li v-show="!validation.itemName">Name cannot be empty.</li>
           <li v-show="!validation.contactEmail">Please provide a valid email address.</li>
           <li v-show="!validation.lostItemLocation">Please provide a location</li>
-
         </ul>
       </div>
       <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center myForm">
@@ -40,7 +38,6 @@
           <label for="routeCoor" class="uk-form-label">Coordinates: </label>
           <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" placeholder="Drag the cursor on the map below"
             required disabled>
-
           <div id="map" uk-tooltip="title: Drag Cursor to Location; pos: top-right">
             <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />

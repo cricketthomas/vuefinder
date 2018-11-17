@@ -35,13 +35,16 @@ Vue.component('title-msg', {
 `
 })
 
-Vue.component('page404', {
+Vue.component('page-error', {
   template: `
-  <div>
-  <h1 class="error">nothing here..
-  </h1>
-  <router-view></router-view>
-</div>
+<div class="uk-section uk-section-xsmall uk-section-primary uk-width-1 uk-align-center">
+    <div class="uk-container">
+    <h1><i>nothing here..</i></h1>
+      <div class="uk-grid-match" uk-grid>
+        <h3 class="uk-align-center">Use the navbar to go somewhere.</h3>
+      </div>
+    </div>
+  </div>
 `
 })
 
@@ -67,7 +70,7 @@ const routes = [{
   },
   {
     name: 'PageNotFound',
-    path: '*',
+    path: '*/',
     component: PageNotFound
   },
   {
