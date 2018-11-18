@@ -2,7 +2,8 @@
 
 > A Vue.js project using firebase to allow students at the univeristy of maryland to mark locations using google maps, and post information about items they may have lost or found around campus and where they may have left them. The main need for this site is that UMDPD, although effective, sometimes has a delay of when they can get to each building to collect the found items and enter them into their own database/website. With that, I made a simple app where people can post what they found or lost, and where they left it. 
 
-## Laundry list: Demo is live: https://cricketthomas.github.io/vuefinder/
+## Demo is live: https://cricketthomas.github.io/vuefinder/
+## Laundry list: 
 ### Not in order to be created. 
 1. ~~Loading page.~~ 
 2. ~~User post page for all personal posts, and an edit, save, and cancel button and crud button~~
@@ -13,7 +14,7 @@
 7. ~~[call back for loading](https://github.com/vuejs/vuefire/blob/master/README.md)~~
 8. ~~Polish Pages data output and search functionality.~~
 9. ~~Data Validation.~~
-10. ~~Style~~
+10. Style, updates.
 11. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
 12. ~~Publish to Github project pages. ~~
 
@@ -22,8 +23,8 @@
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
 
 # [Demo is live!! Needs some work still..](https://cricketthomas.github.io/vuefinder/)
-## ~~Some screenshots of it:
-not quite done, but just wanted to show you if youre curious. ~~
+## ~~Some screenshots of it:~~
+~~not quite done, but just wanted to show you if youre curious.~~
 <img src="./screenshots/login.png" width="200">
 <img src="./screenshots/loginvalid.png" width="200">
 <img src="./screenshots/allpoststop.png" width="200">
