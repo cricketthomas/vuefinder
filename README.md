@@ -23,13 +23,13 @@
 
 # [Demo is live!! Needs some work still..](https://cricketthomas.github.io/vuefinder/)
 ## ~~Some screenshots of it:
-not quite done, but just wanted to show you if youre curious. 
-<img src="./screenshots/login.png" width="480">
-<img src="./screenshots/loginvalid.png" width="480">
-<img src="./screenshots/allpoststop.png" width="480">
-<img src="./screenshots/allposts.png" width="480">
-<img src="./screenshots/details.png" width="480">
-<img src="./screenshots/userposts.png" width="480">~~
+not quite done, but just wanted to show you if youre curious. ~~
+<img src="./screenshots/login.png" width="200">
+<img src="./screenshots/loginvalid.png" width="200">
+<img src="./screenshots/allpoststop.png" width="200">
+<img src="./screenshots/allposts.png" width="200">
+<img src="./screenshots/details.png" width="200">
+<img src="./screenshots/userposts.png" width="200">
 ## Build Setup
 
 ``` bash
