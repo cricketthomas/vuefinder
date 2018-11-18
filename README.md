@@ -16,7 +16,7 @@
 9. ~~Data Validation.~~
 10. Style, updates.
 11. [Unit Test](https://www.youtube.com/watch?v=d2QKTNmU-Tc) [Vue Test Utils](https://vue-test-utils.vuejs.org/)
-12. ~~Publish to Github project pages. ~~
+12. ~~Publish to Github project pages.~~
 
 
 # Future Plans:
