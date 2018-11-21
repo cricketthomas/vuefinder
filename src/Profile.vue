@@ -25,7 +25,7 @@
               <textarea id="itemDescription" placeholder="Please descirbe the item you lost or found" maxlength="250"
                 class="uk-input" v-model="usersPosts.item_info.itemDescription" />
               <br>
-              <label for="itemDate" class="uk-form-label formLabel">Date Lost</label>
+              <label for="itemDate" class="uk-form-label formLabel">Date</label>
               <input type="date" id="itemDate" class="uk-input" v-model="usersPosts.item_info.itemDate">
               <br>
               <label for="contactEmail" class="uk-form-label formLabel"> Contact Email: </label>

@@ -5,7 +5,7 @@
         <div class="uk-navbar-center">
           <ul class="uk-navbar-nav">
             <li v-show="!authUser">
-              <router-link to="/login">Login In</router-link>
+              <router-link to="/login">Login</router-link>
             </li>
             <li v-show="!authUser">
               <router-link to="/signup">Sign Up</router-link>

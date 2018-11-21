@@ -6,7 +6,7 @@
         <h3 class="uk-card-title">{{info.item_info.itemName}}</h3>
         <p class="textLeft">
           <strong>Description:</strong> &nbsp;{{info.item_info.itemDescription}}
-          <br> <strong>Lost on:</strong> &nbsp;{{info.item_info.itemDate}}
+          <br> <strong>{{info.item_info.isFound}} Date:</strong> &nbsp;{{info.item_info.itemDate}}
           <br> <strong>Posted on:</strong> &nbsp;<time>{{info.item_info.dateModified}}</time>
           <br>
           <strong>Contact:</strong>
