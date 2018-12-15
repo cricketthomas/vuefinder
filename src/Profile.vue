@@ -9,9 +9,9 @@
           <div v-if="!usersPosts.edit">
             <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center uk-animation-slide-top-medium">
               <div class="uk-card-badge uk-label" v-bind:class="[usersPosts.item_info.isFound === 'Lost' ? 'uk-label-danger' : usersPosts.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{usersPosts.item_info.isFound}}</div>
-              <h3 class="uk-card-title">{{usersPosts.item_info.itemName}}</h3>
-              <p>Date:{{usersPosts.item_info.itemDate}} </p>
-              <p>Item Description:{{usersPosts.item_info.itemDescription}}</p>
+              <h3 class="uk-card-title"> {{usersPosts.item_info.itemName}}</h3>
+              <p> <strong>Date:</strong> {{usersPosts.item_info.itemDate}} </p>
+              <p> <strong> Item Description:</strong> <br>{{usersPosts.item_info.itemDescription}}</p>
               <button @click="setEdit(usersPosts['.key'])" class="uk-button uk-button-default">Edit</button>
             </div>
           </div>

@@ -5,7 +5,7 @@
       <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s uk-align-center">
         <h3 class="uk-card-title">{{info.item_info.itemName}}</h3>
         <p class="textLeft">
-          <strong>Description:</strong> &nbsp;{{info.item_info.itemDescription}}
+          <strong>Description:</strong> {{info.item_info.itemDescription}}
           <br> <strong>{{info.item_info.isFound}} Date:</strong> &nbsp;{{info.item_info.itemDate}}
           <br> <strong>Posted on:</strong> &nbsp;<time>{{info.item_info.dateModified}}</time>
           <br>
