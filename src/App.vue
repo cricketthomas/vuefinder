@@ -83,5 +83,4 @@
   footer {
     margin: auto;
   }
-
 </style>

@@ -178,31 +178,32 @@ export default {
   .formLabel {
     float: left;
   }
-.saveButton{
+.saveButton {
   background-color: green;
   color: white;
 }
-.saveButton:hover{
+.saveButton:hover {
   background-color: rgb(42, 149, 42);
     color: white;
 
 }
-.cancelButton{
+.cancelButton {
   background-color: goldenrod;
   color: white;
 }
-.cancelButton:hover{
+.cancelButton:hover {
   background-color: rgb(241, 180, 11);
     color: white;
 
 }
-.fieldsetBg{
+.fieldsetBg {
   background-color: whitesmoke;
   padding: 2em;
   border-radius: .5em;
 }
  @media screen and (max-width: 700px) {
   .fieldsetBg {
+  zoom: 80%;
   background-color: whitesmoke;
   padding: .5em;
   border-radius: .5em;

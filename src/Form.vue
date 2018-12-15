@@ -176,19 +176,9 @@
       },
     }
   }
-
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-
   #map {
     display: flex;
     justify-content: center;
@@ -208,13 +198,13 @@
     border-radius: .5em;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 640px) {
     .myForm {
+      zoom: 80%;
       background-color: whitesmoke;
       padding: .5em;
       margin: .5em;
       border-radius: .5em;
     }
   }
-
 </style>

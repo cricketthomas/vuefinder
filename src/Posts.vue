@@ -2,7 +2,7 @@
   <div id="postsCanvas">
     <div v-if="!authUser">
       <br>
-      <h2>Please Sign in</h2>
+      <h2>Please sign in.</h2>
     </div>
     <div v-else>
       <div>
@@ -14,39 +14,25 @@
 
         <section>
           <ul class="grid">
-
             <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium ">
-
               <div class="uk-card uk-card-default uk-card-hover uk-height-max-medium uk-width-*@s">
-
                 <h4 class="uk-card-title">{{post.item_info.itemName}}
-
-
                 </h4>
                 <div class="uk-text-meta uk-margin-remove-top">
                   <p><time>{{post.item_info.itemDate}}</time></p>
                 </div>
                 <span class="uk-card-badge uk-label" v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}
-
                 </span>
-
                 <div class="uk-card-footer">
-                  <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
+                  <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link> &nbsp
                   <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
-
                 </div>
               </div>
             </li>
-
           </ul>
         </section>
-
-
-
-
       </div>
     </div>
-
     <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
     <router-view></router-view>
   </div>
@@ -162,8 +148,8 @@
             notFoundArr.push(postKeys["isFound"]);
           }
         }
-        console.log(foundArr);
-        console.log(notFoundArr);
+        //console.log(foundArr);
+        //console.log(notFoundArr);
       }
     },
     computed: {
@@ -191,7 +177,7 @@
             foundArr.push(postKeys["isFound"]);
           }
         }
-        console.log(foundArr);
+        //console.log(foundArr);
         return foundArr.length;
       },
       notFoundFilter() {
@@ -202,7 +188,7 @@
             notFoundArr.push(postKeys["isFound"]);
           }
         }
-        console.log(notFoundArr);
+        //console.log(notFoundArr);
         return notFoundArr.length;
       },
       returnedFilter() {
@@ -213,7 +199,7 @@
             returnedArr.push(postKeys["isFound"]);
           }
         }
-        console.log(returnedArr);
+        //console.log(returnedArr);
         return returnedArr.length;
       }
     },
@@ -252,8 +238,8 @@
   }
 
   .toTop {
-    right: 1vw;
-    top: 95vh;
+    right: 25px;
+    top: 80vh;
     position: fixed;
   }
 
@@ -262,30 +248,34 @@
   }
 
 
-  @media screen and (min-width: 640px) {
+  @media screen and (max-width: 640px) {
+    #postsCanvas {
+      zoom: 90%;
+    }
+
     .grid {
       list-style: none;
       margin: 0 auto;
       padding: 20px;
       text-align: left;
-      width: 80%;
+      width: 70%;
+      overflow-x: hidden;
     }
 
     .grid li {
-      display: inline-block;
+      display: block;
       position: relative;
-      width: 50%;
+      width: 100%;
     }
 
     .grid li:after {
-      content: "";
       display: block;
       padding-bottom: 5%;
     }
 
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 960px) {
     .grid {
       list-style: none;
       margin: 0 auto;
@@ -301,7 +291,6 @@
     }
 
     .grid li:after {
-      content: "";
       display: block;
       padding-bottom: 5%;
     }
