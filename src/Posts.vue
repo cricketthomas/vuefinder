@@ -11,8 +11,55 @@
         <h4>Summary</h4>
         <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['orange','red', 'blue']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
         </pie-chart>
+
+        <section>
+          <ul class="grid">
+
+            <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium uk-width-small*">
+
+              <div class="uk-card uk-card-default uk-card-hover uk-height-max-medium">
+
+                <h4 class="uk-card-title">{{post.item_info.itemName}}
+
+
+                </h4>
+                <div class="uk-text-meta uk-margin-remove-top">
+                  <p><time>{{post.item_info.itemDate}}</time></p>
+                </div>
+                <span class="uk-card-badge uk-label" v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}
+
+                </span>
+
+                <div class="uk-card-footer">
+                  <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
+                  <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
+
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+
+
+
+      </div>
+    </div>
+
+    <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
+    <router-view></router-view>
+  </div>
+
+
+
+  <!-- 
+
+
         <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium">
+          
           <div v-show="post.item_info.isFound === 'Lost' || post.item_info.isFound === 'Found'" class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
+
             <div class="uk-card-header">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-width-expand">
@@ -41,12 +88,18 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
-    <router-view></router-view>
-  </div>
+
+
+
+
+
+
+    
+  -->
 </template>
+
+
+
 <script>
   import App from './App.vue';
 
@@ -118,15 +171,14 @@
         let searching = (this.search || "").toLowerCase().trim();
         return this.usersData.filter(function (item) {
           let nameSearch = (item.item_info.itemName || "").toLowerCase();
-          let descriptionSearch = (
-            item.item_info.itemDescription || ""
-          ).toLowerCase();
+          let descriptionSearch = (item.item_info.itemDescription || "").toLowerCase();
           let emailSearch = (item.item_info.contactEmail || "").toLowerCase();
-
+          let lostSearch = (item.item_info.isFound || "").toLowerCase();
           return (
             nameSearch.indexOf(searching) > -1 ||
             descriptionSearch.indexOf(searching) > -1 ||
-            emailSearch.indexOf(searching) > -1
+            emailSearch.indexOf(searching) > -1 ||
+            lostSearch.indexOf(searching) > -1
           );
         });
       },
@@ -172,7 +224,6 @@
       //foundFilter();
     }
   };
-
 </script>
 <style>
   .pieChart {
@@ -210,4 +261,23 @@
     text-align: center
   }
 
+  .grid {
+    list-style: none;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .grid li {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+  }
+
+  .grid li:after {
+    content: "";
+    display: block;
+    padding-bottom: 5%;
+  }
 </style>

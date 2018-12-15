@@ -2,7 +2,7 @@
   <div class="canvas uk-animation-slide-top-medium">
     <div>
       <h2>Post Details</h2>
-      <div class="uk-card uk-card-default uk-card-body uk-width-1-3@m uk-align-center">
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s uk-align-center">
         <h3 class="uk-card-title">{{info.item_info.itemName}}</h3>
         <p class="textLeft">
           <strong>Description:</strong> &nbsp;{{info.item_info.itemDescription}}
