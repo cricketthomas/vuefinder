@@ -15,9 +15,9 @@
         <section>
           <ul class="grid">
 
-            <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium uk-width-small*">
+            <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium ">
 
-              <div class="uk-card uk-card-default uk-card-hover uk-height-max-medium">
+              <div class="uk-card uk-card-default uk-card-hover uk-height-max-medium uk-width-*@s">
 
                 <h4 class="uk-card-title">{{post.item_info.itemName}}
 
@@ -261,23 +261,50 @@
     text-align: center
   }
 
-  .grid {
-    list-style: none;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: left;
-    width: 100%;
+
+  @media screen and (min-width: 640px) {
+    .grid {
+      list-style: none;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: left;
+      width: 80%;
+    }
+
+    .grid li {
+      display: inline-block;
+      position: relative;
+      width: 50%;
+    }
+
+    .grid li:after {
+      content: "";
+      display: block;
+      padding-bottom: 5%;
+    }
+
   }
 
-  .grid li {
-    display: inline-block;
-    position: relative;
-    width: 50%;
-  }
+  @media screen and (min-width: 1200px) {
+    .grid {
+      list-style: none;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: left;
+      width: 80%;
+    }
 
-  .grid li:after {
-    content: "";
-    display: block;
-    padding-bottom: 5%;
+    .grid li {
+      display: inline-block;
+      position: relative;
+      width: 50%;
+    }
+
+    .grid li:after {
+      content: "";
+      display: block;
+      padding-bottom: 5%;
+    }
+
   }
 </style>
