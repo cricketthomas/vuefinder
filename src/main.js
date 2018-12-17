@@ -80,7 +80,7 @@ const routes = [{
     props: true
   },
   {
-    path: '/login',
+    path: '/vuefinder/login',
     name: 'login',
     component: Login
   },
