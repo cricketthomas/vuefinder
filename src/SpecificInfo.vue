@@ -13,7 +13,6 @@
           &nbsp; {{info.item_info.contactEmail}} |
           &nbsp; {{info.item_info.contactPhone}}
         </p>
-
       </div>
       <div id='map'>
         <gmap-map :center="cleaningCoordinates" :zoom="15" style="width: 550px; height: 300px" map-type-id="roadmap">
@@ -72,8 +71,6 @@
     }
   }
 
-  //https://vuefinder-1.firebaseio.com/usersRef/-LOuD99xPEbi5yojBxfH/itemInformation.json
-
 </script>
 <style>
   #map {
@@ -81,14 +78,9 @@
     justify-content: center;
   }
 
-
-
   .textLeft {
     text-align: left;
   }
-
-
-
 
   @media screen and (max-width: 900px) {
     .canvas {

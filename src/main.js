@@ -57,7 +57,7 @@ Vue.use(VueGoogleMaps, {
     // (as you require)
   },
   //// then disable the following:
-  // installComponents: true,
+  // installComponents: true
 })
 
 Vue.use(VueFire);
