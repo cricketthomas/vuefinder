@@ -5,7 +5,7 @@
 ## [Preview is live](https://cricketthomas.github.io/vuefinder/)
 login with: 
 user: test@test.com
-passowrd: 123456
+password: 123456
 
 # Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
