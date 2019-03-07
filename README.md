@@ -6,6 +6,10 @@ A Vue.js project using firebase to allow students at the University of Maryland 
 login with: 
 user: test@test.com
 password: 123456
+## Notes:
+ - Google Maps API is disabled since I want to be sure I am not billed.
+ - This results in a the form to not submittable and the view info route to not display the map either
+ - Just testing out an idea with this
 
 # Future Plans:
 1.[ Offer the option to view the locations address rather than a pin](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse#try-it-yourself)
