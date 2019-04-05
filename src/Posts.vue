@@ -7,25 +7,33 @@
     <div v-else>
       <div>
         <input type="text" v-model="search" uk-sticky="offset: 80; animation: uk-animation-slide-top; min-width: 1000px"
-          placeholder="search everything" class="uk-form-width-large uk-width-expand uk-input uk-align-center searchbar">
+          placeholder="search everything"
+          class="uk-form-width-large uk-width-expand uk-input uk-align-center searchbar">
         <h4>Summary</h4>
-        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['orange','red', 'blue']" :data="[['Items Found', foundFilter], ['Items Lost', notFoundFilter], ['Items Retruned', returnedFilter]]">
+
+        <pie-chart class="pieChart" legend="bottom" :donut="true" :colors="['orange','red', 'blue']"
+          :data="[['Found', foundFilter], ['Lost', notFoundFilter], ['Returned', returnedFilter]]">
         </pie-chart>
 
         <section>
           <ul class="grid">
-            <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium ">
+            <li v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']"
+              class="uk-align-center uk-text-center uk-animation-slide-top-medium ">
               <div class="uk-card uk-card-default uk-card-hover uk-height-max-medium uk-width-*@s">
                 <h4 class="uk-card-title">{{post.item_info.itemName}}
                 </h4>
                 <div class="uk-text-meta uk-margin-remove-top">
                   <p><time>{{post.item_info.itemDate}}</time></p>
                 </div>
-                <span class="uk-card-badge uk-label" v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}
+                <span class="uk-card-badge uk-label"
+                  v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}
                 </span>
                 <div class="uk-card-footer">
-                  <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link> &nbsp
-                  <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
+                  <router-link class="uk-button uk-button-text"
+                    :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
+                  &nbsp
+                  <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId"
+                    @click="deletePost(post)">Delete</button>
                 </div>
               </div>
             </li>
@@ -36,52 +44,6 @@
     <a uk-totop href="#top" class="toTop" uk-scroll="duration: 150"></a>
     <router-view></router-view>
   </div>
-
-
-
-  <!-- 
-
-
-        <div v-for="post in filteredPosts.reverse()" v-bind:key="post['.key']" class="uk-align-center uk-text-center uk-animation-slide-top-medium">
-          
-          <div v-show="post.item_info.isFound === 'Lost' || post.item_info.isFound === 'Found'" class="uk-card uk-card-small uk-card-default uk-width-1-2@m uk-align-center">
-
-            <div class="uk-card-header">
-              <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-expand">
-                  <h3 class="uk-card-title uk-margin-remove-bottom">{{post.item_info.itemName}}</h3>
-                  <p class="uk-text-meta uk-margin-remove-top"><time>{{post.item_info.itemDate}}</time></p>
-                  <div class="uk-card-badge uk-label" v-bind:class="[post.item_info.isFound === 'Lost' ? 'uk-label-danger' : post.item_info.isFound === 'Found' ? 'uk-label-warning' : 'uk-label']">{{post.item_info.isFound}}</div>
-                </div>
-              </div>
-            </div>
-            <div class="uk-card-body uk-align-center">
-              <div class="textLeft">
-                <h4>Description:</h4>
-                <p>{{post.item_info.itemDescription}}</p>
-                <h4>Contact Information:</h4>
-                <p>
-                  <strong>Email:</strong> {{post.item_info.contactEmail}}
-                  <br />
-                  <strong>Phone:</strong> {{post.item_info.contactPhone}}
-                </p>
-                <p class="uk-text-meta">Updated: {{post.item_info.dateModified}}</p>
-                <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId" @click="deletePost(post)">Delete</button>
-              </div>
-            </div>
-            <div class="uk-card-footer">
-              <router-link class="uk-button uk-button-text" :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-
-    
-  -->
 </template>
 
 
@@ -111,11 +73,6 @@
     },
     firebase: {
       usersData: usersRef
-      //cancelCallback: function () {},
-      // this is called once the data has been retrieved from firebase
-      //readyCallback: function(error) {
-      //alert("ready");
-      //}
     },
 
     methods: {
@@ -148,8 +105,6 @@
             notFoundArr.push(postKeys["isFound"]);
           }
         }
-        //console.log(foundArr);
-        //console.log(notFoundArr);
       }
     },
     computed: {
@@ -210,6 +165,7 @@
       //foundFilter();
     }
   };
+
 </script>
 <style>
   .pieChart {
@@ -217,10 +173,6 @@
     animation-duration: 1500ms;
     animation-iteration-count: 1;
     animation-timing-function: infinite;
-    /* transform: rotate(3deg); */
-    /* transform: rotate(0.3rad);/ */
-    /* transform: rotate(3grad); */
-    /* transform: rotate(.03turn);  */
   }
 
   @keyframes spin {
@@ -296,4 +248,5 @@
     }
 
   }
+
 </style>
