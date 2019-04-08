@@ -1,16 +1,9 @@
 <template>
   <div>
-    <div>
-      <div>
-        <ul class="errors" v-show="false">
-          <li v-show="!validation.itemName">Name cannot be empty.</li>
-          <li v-show="!validation.contactEmail">Please provide a valid email address.</li>
-          <li v-show="!validation.lostItemLocation">Please provide a location</li>
-        </ul>
-      </div>
-      <fieldset class="uk-fieldset uk-form-width-large uk-form-stacked uk-align-center myForm">
-        <form id="form" @submit.prevent="addPost()">
-          <h3>Enter your items details below:</h3>
+    <h4>Enter your items details below:</h4>
+    <form id="form" @submit.prevent="addPost()" class="form">
+      <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+        <div>
           <label for="itemName" class="uk-form-label formLabel">Item Name</label>
           <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item Name"
             v-model="newPosts.itemName" required>
@@ -31,22 +24,22 @@
           <br>
           <input type="radio" id="found" value="Found" class="uk-radio" v-model="newPosts.isFound">
           <label for="found">Found Item</label>
-
           <input type="radio" id="lost" value="Lost" class="uk-radio" checked v-model="newPosts.isFound">
           <label for="lost">Lost Item</label>
-          <br>
-          <label for="routeCoor" class="uk-form-label">Coordinates: </label>
-          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation"
+        </div>
+        <div>
+          <label for="routeCoor" class="uk-form-label formLabel">Coordinates:</label>
+          <input type="text" class="uk-input uk-form-width-large" id="routeCoor" v-model="newPosts.lostItemLocation"
             placeholder="Drag the cursor on the map below" required disabled>
           <div id="map" uk-tooltip="title: Drag Cursor to Location; pos: top-right">
-            <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
+            <gmap-map :center="mapPosition" :zoom="15" style="width: 500px; height: 300px" map-type-id="roadmap">
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
             </gmap-map>
           </div>
-          <input type="submit" value="Submit Post" class="uk-button uk-button-secondary uk-button-small submitButton">
-        </form>
-      </fieldset>
-    </div>
+        </div>
+      </div>
+      <input type="submit" value="Submit Post" class="uk-button uk-button-secondary uk-button-small submitButton">
+    </form>
     <router-view></router-view>
   </div>
 </template>
@@ -74,8 +67,8 @@
           lng: 10.0
         },
         mapPosition: {
-          lat: 38.98,
-          lng: -76.94
+          lat: 38.8049,
+          lng: -77.047
         },
         markers: [{
           position: {
@@ -129,7 +122,7 @@
           //var exampleRef = usersRef.child('Posts').push();
           //usersRef.child("userId").push(this.authUser.uid);
           console.log("Submitted")
-          console.log("Location " + JSON.stringify(this.lostItemLocation))
+          //console.log("Location " + JSON.stringify(this.lostItemLocation))
           this.newPosts.itemName = '',
             this.newPosts.itemDescription = '',
             this.newPosts.itemDate = '',
@@ -145,8 +138,8 @@
           lat: location.latLng.lat(),
           lng: location.latLng.lng(),
         };
-        console.log(JSON.stringify(this.coordinates.lat))
-        console.log(JSON.stringify(this.coordinates.lng))
+        //console.log(JSON.stringify(this.coordinates.lat))
+        //console.log(JSON.stringify(this.coordinates.lng))
         this.newPosts.lostItemLocation = JSON.stringify(this.coordinates)
         var routeCoor = document.getElementById('routeCoor').value = JSON.stringify(this.coordinates)
         //let test = JSON.stringify(this.coordinates)
@@ -180,11 +173,6 @@
 </script>
 
 <style>
-  #map {
-    display: flex;
-    justify-content: center;
-  }
-
   .formLabel {
     float: left;
   }
@@ -193,19 +181,22 @@
     margin-top: 10px;
   }
 
-  .myForm {
-    background-color: whitesmoke;
-    padding: 2em;
-    border-radius: .5em;
+  .form {
+    max-width: 1000px;
+    margin: auto;
   }
 
   @media screen and (max-width: 640px) {
-    .myForm {
-      zoom: 80%;
-      background-color: whitesmoke;
-      padding: .5em;
-      margin: .5em;
-      border-radius: .5em;
+    .form {
+      transform: scale(0.9);
+      margin-top: -2.5em;
+      overflow: hidden;
+    }
+
+    .form #map {
+      display: flex;
+      justify-content: center;
+
     }
   }
 
