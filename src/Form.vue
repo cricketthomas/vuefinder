@@ -12,8 +12,8 @@
         <form id="form" @submit.prevent="addPost()">
           <h3>Enter your items details below:</h3>
           <label for="itemName" class="uk-form-label formLabel">Item Name</label>
-          <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item Name" v-model="newPosts.itemName"
-            required>
+          <input type="text" id="itemName" class="uk-input formLabel" placeholder="Post Title / Item Name"
+            v-model="newPosts.itemName" required>
           <br>
           <label for="itemDescription" class="uk-form-label formLabel">Item Description</label>
           <textarea id="itemDescription" class="uk-textarea" placeholder="Please descirbe the item you lost or found"
@@ -36,8 +36,8 @@
           <label for="lost">Lost Item</label>
           <br>
           <label for="routeCoor" class="uk-form-label">Coordinates: </label>
-          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation" placeholder="Drag the cursor on the map below"
-            required disabled>
+          <input type="text" class="uk-input" id="routeCoor" v-model="newPosts.lostItemLocation"
+            placeholder="Drag the cursor on the map below" required disabled>
           <div id="map" uk-tooltip="title: Drag Cursor to Location; pos: top-right">
             <gmap-map :center="mapPosition" :zoom="17" style="width: 500px; height: 300px" map-type-id="roadmap">
               <gmap-marker :position="mapPosition" :draggable="true" @drag="ItemCoordinates" />
@@ -176,6 +176,7 @@
       },
     }
   }
+
 </script>
 
 <style>
@@ -207,4 +208,5 @@
       border-radius: .5em;
     }
   }
+
 </style>
