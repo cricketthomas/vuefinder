@@ -31,7 +31,7 @@
                 <div class="uk-card-footer">
                   <router-link class="uk-button uk-button-text"
                     :to="{ name: 'specificinfo', params: { postkey: post['.key'].slice(1, 30) }}">Details</router-link>
-                  &nbsp
+                  &nbsp;
                   <button class="uk-button-danger" v-show="authUser.uid == post.item_info.userId"
                     @click="deletePost(post)">Delete</button>
                 </div>

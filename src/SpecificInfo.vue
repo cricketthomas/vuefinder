@@ -20,89 +20,88 @@
         </p>
       </div>
       <div id="map">
-        <gmap-map
-          :center="cleaningCoordinates"
-          :zoom="15"
-          style="width: 550px; height: 300px"
-          map-type-id="roadmap"
-        >
-          <gmap-marker :position="cleaningCoordinates"/>
+        <gmap-map :center="cleaningCoordinates" :zoom="15" style="width: 550px; height: 300px" map-type-id="roadmap">
+          <gmap-marker :position="cleaningCoordinates" />
         </gmap-map>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Vue from "vue";
-import App from "./App.vue";
-import axios from "axios";
-import * as VueGoogleMaps from "vue2-google-maps";
-import "./firebase";
-import firebase, { functions } from "firebase";
-Vue.prototype.$http = axios;
+  import Vue from "vue";
+  import App from "./App.vue";
+  import axios from "axios";
+  import * as VueGoogleMaps from "vue2-google-maps";
+  import "./firebase";
+  import firebase, {
+    functions
+  } from "firebase";
+  Vue.prototype.$http = axios;
 
-export default {
-  name: "specificinfo",
-  data() {
-    return {
-      info: null
-    };
-  },
-  created() {
-    axios
-      .get(
-        "https://vuefinder-1.firebaseio.com/usersRef/-" +
+  export default {
+    name: "specificinfo",
+    data() {
+      return {
+        info: {}
+      };
+    },
+    created() {
+      axios
+        .get(
+          "https://vuefinder-1.firebaseio.com/usersRef/-" +
           this.$route.params.postkey +
           ".json"
-      )
-      .then(response => (this.info = response.data));
-    //.then(response => (this.info = response.data)).catch(
-    //error => console.log(error))
-  },
+        )
+        .then(response => (this.info = response.data));
+      //.then(response => (this.info = response.data)).catch(
+      //error => console.log(error))
+    },
 
-  computed: {
-    cleaningCoordinates() {
-      if (!this.dataLoaded) {
-        return {
-          lat: -18.98,
-          lng: -76.94
-        };
+    computed: {
+      cleaningCoordinates() {
+        if (!this.info) {
+          return {
+            lat: -18.98,
+            lng: -76.94
+          };
+        }
+        var parsedLocation = JSON.parse(this.info.item_info.lostItemLocation);
+        return parsedLocation;
       }
-      var parsedLocation = JSON.parse(this.info.item_info.lostItemLocation);
-      return parsedLocation;
     }
-  }
-};
+  };
+
 </script>
 <style>
-#map {
-  display: flex;
-  justify-content: center;
-}
-
-.textLeft {
-  text-align: left;
-}
-
-@media screen and (max-width: 900px) {
-  .canvas {
-    margin: auto;
-    padding-bottom: 205px;
+  #map {
+    display: flex;
+    justify-content: center;
   }
-}
 
-@media screen and (max-width: 1600px) {
-  .canvas {
-    margin: auto;
-    padding-bottom: 205px;
+  .textLeft {
+    text-align: left;
   }
-}
 
-@media screen and (min-width: 1000px) {
-  .canvas {
-    margin: auto;
-    padding-bottom: 25vh;
-    overflow: hidden;
+  @media screen and (max-width: 900px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 205px;
+    }
   }
-}
+
+  @media screen and (max-width: 1600px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 205px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .canvas {
+      margin: auto;
+      padding-bottom: 25vh;
+      overflow: hidden;
+    }
+  }
+
 </style>
