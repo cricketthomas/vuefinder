@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas uk-animation-slide-top-medium" v-if="info">
+  <div class="canvas uk-animation-slide-top-medium" v-if="info.item_info">
     <div>
       <h2>Post Details</h2>
       <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s uk-align-center">
