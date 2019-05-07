@@ -1,6 +1,6 @@
 ## Vue itemfinder
 
-A Vue.js project using firebase to allow students at the University of Maryland to mark locations using google maps, and post information about items they may have lost or found around campus and where they may have left them. The main need for this site is that UMDPD, although effective, sometimes has a delay of when they can get to each building to collect the found items and enter them into their own database/website. With that, I made a simple app where people can post what they found or lost, and where they left it. 
+A Vue.js project using firebase (for Auth & CRUD) to allow students at the University of Maryland to mark locations using google maps, and post information about items they may have lost or found around campus and where they may have left them. The main need for this site is that UMDPD, although effective, sometimes has a delay of when they can get to each building to collect the found items and enter them into their own database/website. With that, I made a simple app where people can post what they found or lost, and where they left it. 
 
 ## [Preview is live](https://cricketthomas.github.io/vuefinder/)
 ## login with: 
