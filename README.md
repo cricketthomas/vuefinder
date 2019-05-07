@@ -3,12 +3,10 @@
 A Vue.js project using firebase to allow students at the University of Maryland to mark locations using google maps, and post information about items they may have lost or found around campus and where they may have left them. The main need for this site is that UMDPD, although effective, sometimes has a delay of when they can get to each building to collect the found items and enter them into their own database/website. With that, I made a simple app where people can post what they found or lost, and where they left it. 
 
 ## [Preview is live](https://cricketthomas.github.io/vuefinder/)
-login with: 
+## login with: 
 user: test@test.com
 password: 123456
 ## Notes:
- - Google Maps API is disabled since I want to be sure I am not billed.
- - This results in a the form to not submittable and the view info route to not display the map either
  - Just testing out an idea with this
 
 # Future Plans:
