@@ -14,6 +14,7 @@ import './firebase';
 import * as VueGoogleMaps from "vue2-google-maps";
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+import './registerServiceWorker'
 
 
 Vue.use(VueChartkick, {
