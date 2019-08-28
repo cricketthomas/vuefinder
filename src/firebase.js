@@ -3,7 +3,7 @@ import {
   } from 'firebase';
   
   const app = initializeApp({
-    apiKey: "AIzaSyA8HH_8AmcfYFebQPbGVtTqVdcZxg3ieJE",
+    apiKey: "AIzaSyC1c0LoY8qlxWNomybptoRb84T9zvIW7dE",
     authDomain: "vuefinder-1.firebaseapp.com",
     databaseURL: "https://vuefinder-1.firebaseio.com",
     projectId: "vuefinder-1",
