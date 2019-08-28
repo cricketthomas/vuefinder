@@ -1,6 +1,6 @@
 {
-  "name": "vue-finder",
-  "short_name": "vue-finder",
+  "name": "vuefinder",
+  "short_name": "vuefinder",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
